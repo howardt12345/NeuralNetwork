@@ -47,11 +47,10 @@ public class NeuralNetwork {
 		return layers[layers()-1].outputs();
 	}
 	public void train(int epochs, 
-			float[][] inputs, 
-			float[][] target,
+			Dataset data,
 			float learnRate)
 	{
-		BackPropagation train = new BackPropagation(this, inputs, target, learnRate);
+		BackPropagation train = new BackPropagation(this, data, learnRate);
 		train.train(epochs);
 	}
 	public Layer get(int index)
