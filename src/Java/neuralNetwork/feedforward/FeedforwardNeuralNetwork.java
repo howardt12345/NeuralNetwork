@@ -6,7 +6,7 @@ import Java.neuralNetwork.*;
 import Java.neuralNetwork.functions.*;
 import Java.neuralNetwork.training.*;
 
-public class FeedforwardNeuralNetwork {
+public class FeedforwardNeuralNetwork implements NeuralNetwork {
 	protected Layer[] layers;
 	private Connection[] weights;
 	private Activation activation;
