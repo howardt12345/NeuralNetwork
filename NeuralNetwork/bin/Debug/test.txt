@@ -1,0 +1,13 @@
+Results: 
+Runs: 10 
+Sample size: 2 matrices
+*****
+Average time for Matrix 0 and 1: 0.084199995 ms 
+Average time for Matrix 0 and 1: 25.824078 ms (parallel) 
+
+*****
+Best time for Matrix 0 and 1: 0.012081999 ms 
+Best time for Matrix 0 and 1: 0.095528 ms (parallel) 
+
+*****
+Average time for runs: 0.014300001 seconds
