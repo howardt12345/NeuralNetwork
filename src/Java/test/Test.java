@@ -12,7 +12,7 @@ public class Test {
 		float[][] in = new float[][]{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
 				target = new float[][] {{0}, {1}, {1}, {0}};
 		NeuralNetwork network = new NeuralNetwork(
-				new int[] {2, 7, 5, 3, 1}, 
+				new int[] {2, 5, 1}, 
 				Activation.sigmoid(), 
 				Initialization.randomUniform() 
 				);
@@ -26,11 +26,9 @@ public class Test {
 			System.out.println();
 			for(int b = 0; b < out.length; b++)
 				System.out.print("Expected: " + target[a][b] + " ");
-			//System.out.println();
-			//network.print();
 			System.out.println('\n');
 		}
-		//network.print();
+		network.print();
 	}
 	@SuppressWarnings("unused")
 	private static void setOutput(String filename)

@@ -37,8 +37,10 @@ public class BackPropagation extends Training {
 		}
 		data.getData().forEach(x -> {
 			float[] out = network.feedForward(x);
-			float[] delta = cost.delta(out, data.get(x), network.layers[n]);
-			
+			float[] delta = Utils.multiply(
+					cost.delta(out, data.get(x)), 
+					network.layers[n].derivatives()
+					);
 			nebla_b[n-1] = Utils.add(nebla_b[n-1], delta);
 			network.weights[n-1].deltaWeights = Matrix.add(
 					network.weights[n-1].deltaWeights, 
