@@ -6,7 +6,7 @@ public abstract class Activation {
 	private Activation() {}
 	public abstract float[] f(float[] x);
 	public abstract float[] der(float[] x);
-	/** <p>The identity activation function, given by f(x) = x.</p>
+	/** <p>The Identity activation function, given by f(x) = x.</p>
 	 * <p>The derivative of this function is f'(x) = 1.</p>
 	 */
 	public static Activation identity()
@@ -20,8 +20,8 @@ public abstract class Activation {
 			}
 		};
 	}
-	/** <p>The binary step function activation function, given by f(x) = x.</p>
-	 * <p>The derivative of this function is f'(x) = 1.</p>
+	/** <p>The Binary step activation function, given by f(x) = { 0 for x < 0, 1 for x >= 0.</p>
+	 * <p>The derivative of this function is f'(x) = { 0 for x != 0, ? for x = 0.</p>
 	 */
 	public static Activation binaryStep()
 	{
@@ -40,6 +40,9 @@ public abstract class Activation {
 			}
 		};
 	}
+	/** <p>The Logistic activation function, given by f(x) = 1/(1+exp(-x)).</p>
+	 * <p>The derivative of this function is f'(x) = f(x)*(1-f(x)).</p>
+	 */
 	public static Activation sigmoid()
 	{
 		return new Activation() {
@@ -57,13 +60,16 @@ public abstract class Activation {
 			}
 		};
 	}
-	public static Activation reLu()
+	/** <p>The Rectified linear unit (reLU) activation function, given by f(x) = max(0, x).</p>
+	 * <p>The derivative of this function is f'(x) = { 0 for x < 0, 1 for x >= 0.</p>
+	 */
+	public static Activation reLU()
 	{
 		return new Activation() {
 			public float[] f(float[] x) {
 				float[] A = new float[x.length];
 				IntStream.range(0, x.length).forEach(
-						a -> A[a] = x[a] < 0 ? 0 : x[a]);
+						a -> A[a] =  Math.max(0, x[a]));
 				return A;
 			}
 			public float[] der(float[] x) {
@@ -71,6 +77,9 @@ public abstract class Activation {
 			}
 		};
 	}
+	/** <p>The Leaky ReLU activation function, given by f(x) = { 0.01x for x < 0, x for x >= 0.</p>
+	 * <p>The derivative of this function is f'(x) = { 0.01 for x < 0, 1 for x >= 0.</p>
+	 */
 	public static Activation leakyReLu()
 	{
 		return new Activation() {
@@ -88,23 +97,30 @@ public abstract class Activation {
 			}
 		};
 	}
-	public static Activation pReLu(float y)
+	/** <p>The Parametric ReLU activation function, given by f(x) = { ax for x < 0, x for x >= 0.</p>
+	 * <p>The derivative of this function is f'(x) = { a for x < 0, 1 for x >= 0.</p>
+	 * @param a the coefficient of leakage.
+	 */
+	public static Activation pReLu(float a)
 	{
 		return new Activation() {
 			public float[] f(float[] x) {
 				float[] A = new float[x.length];
 				IntStream.range(0, x.length).forEach(
-						a -> A[a] = x[a] < 0 ? y*x[a] : x[a]);
+						i -> A[i] = x[i] < 0 ? a*x[i] : x[i]);
 				return A;			
 			}
 			public float[] der(float[] x) {
 				float[] A = new float[x.length];
 				IntStream.range(0, x.length).forEach(
-						a -> A[a] = x[a] < 0 ? y : 1);
+						i -> A[i] = x[i] < 0 ? a : 1);
 				return A;	
 			}
 		};
 	}
+	/** <p>The Hyperbolic tangent activation function, given by f(x) = tanh(x) = 2/(1+exp(-2x))-1.</p>
+	 * <p>The derivative of this function is f'(x) = 1-f(x)^2.</p>
+	 */
 	public static Activation tanH()
 	{
 		return new Activation() {
@@ -122,6 +138,9 @@ public abstract class Activation {
 			}
 		};
 	}
+	/** <p>The Softmax ativation function, given by f(x)_j = exp(x_j)/SUM(exp(x_k)|k=1).</p>
+	 * <p>The derivative of this function is ---.</p>
+	 */
 	public static Activation softMax()
 	{
 		return new Activation () {
@@ -137,6 +156,9 @@ public abstract class Activation {
 			}
 		};
 	}
+	/** <p>The softplus ativation function, given by f(x) = ln(1+exp(x)).</p>
+	 * <p>The derivative of this function is 1/(1+exp(-x)).</p>
+	 */
 	public static Activation softPlus()
 	{
 		return new Activation () {
