@@ -8,7 +8,6 @@ public class Training {
 	{
 		this.data = data;
 	}
-	
 	public void train()
 	{
 		
