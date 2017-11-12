@@ -1,4 +1,4 @@
-package neuralNetwork;
+package Java.neuralNetwork;
 
 public class Connection {
 	protected Matrix weights, deltaWeights;

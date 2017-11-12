@@ -1,4 +1,4 @@
-package neuralNetwork;
+package Java.neuralNetwork;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

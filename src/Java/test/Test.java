@@ -1,8 +1,8 @@
-package test;
+package Java.test;
 
 import java.util.*;
 
-import neuralNetwork.*;
+import Java.neuralNetwork.*;
 
 import java.io.*;
 
