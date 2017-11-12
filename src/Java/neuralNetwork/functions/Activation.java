@@ -14,9 +14,11 @@ public abstract class Activation {
 	public static Activation identity()
 	{
 		return new Activation() {
+			@Override
 			public float[] f(float[] x) {
 				return x;
 			}
+			@Override
 			public float[] der(float[] x) {
 				return Utils.arrayof(1, x.length);
 			}
@@ -28,12 +30,14 @@ public abstract class Activation {
 	public static Activation binaryStep()
 	{
 		return new Activation() {
+			@Override
 			public float[] f(float[] x) {
 				float[] A = new float[x.length];
 				IntStream.range(0, x.length).forEach(
 						a -> A[a] = x[a] < 0 ? 0 : 1);
 				return A;
 			}
+			@Override
 			public float[] der(float[] x) {
 				float[] A = new float[x.length];
 				IntStream.range(0, x.length).forEach(
@@ -48,12 +52,14 @@ public abstract class Activation {
 	public static Activation sigmoid()
 	{
 		return new Activation() {
+			@Override
 			public float[] f(float[] x) {
 				float[] A = new float[x.length];
 				IntStream.range(0, x.length).forEach(
 						a -> A[a] = Utils.sigmoid(x[a]));
 				return A;			
 			}
+			@Override
 			public float[] der(float[] x) {
 				float[] A = new float[x.length], s = f(x);
 				IntStream.range(0, x.length).forEach(
@@ -68,12 +74,14 @@ public abstract class Activation {
 	public static Activation reLU()
 	{
 		return new Activation() {
+			@Override
 			public float[] f(float[] x) {
 				float[] A = new float[x.length];
 				IntStream.range(0, x.length).forEach(
 						a -> A[a] =  Math.max(0, x[a]));
 				return A;
 			}
+			@Override
 			public float[] der(float[] x) {
 				return binaryStep().der(x);
 			}
@@ -85,12 +93,14 @@ public abstract class Activation {
 	public static Activation leakyReLu()
 	{
 		return new Activation() {
+			@Override
 			public float[] f(float[] x) {
 				float[] A = new float[x.length];
 				IntStream.range(0, x.length).forEach(
 						a -> A[a] = x[a] < 0 ? 0.01f*x[a] : x[a]);
 				return A;			
 			}
+			@Override
 			public float[] der(float[] x) {
 				float[] A = new float[x.length];
 				IntStream.range(0, x.length).forEach(
@@ -106,12 +116,14 @@ public abstract class Activation {
 	public static Activation pReLu(float a)
 	{
 		return new Activation() {
+			@Override
 			public float[] f(float[] x) {
 				float[] A = new float[x.length];
 				IntStream.range(0, x.length).forEach(
 						i -> A[i] = x[i] < 0 ? a*x[i] : x[i]);
 				return A;			
 			}
+			@Override
 			public float[] der(float[] x) {
 				float[] A = new float[x.length];
 				IntStream.range(0, x.length).forEach(
@@ -126,12 +138,14 @@ public abstract class Activation {
 	public static Activation tanH()
 	{
 		return new Activation() {
+			@Override
 			public float[] f(float[] x) {
 				float[] A = new float[x.length];
 				IntStream.range(0, x.length).forEach(
 						a -> A[a] = Utils.tanH(x[a]));
 				return A;			
 			}
+			@Override
 			public float[] der(float[] x) {
 				float[] A = new float[x.length];
 				IntStream.range(0, x.length).forEach(
@@ -146,6 +160,7 @@ public abstract class Activation {
 	public static Activation softMax()
 	{
 		return new Activation () {
+			@Override
 			public float[] f(float[] x) {
 				float[] exp = Utils.exps(x), A = new float[x.length];
 				float sum = Utils.sum(exp);
@@ -153,6 +168,7 @@ public abstract class Activation {
 					A[a] = exp[a]/sum;
 				return A;
 			}
+			@Override
 			public float[] der(float[] x) {
 				float[] f = f(x), A = new float[x.length];
 				for(int i = 0; i < x.length; i++)
