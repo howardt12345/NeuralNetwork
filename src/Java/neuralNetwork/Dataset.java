@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Dataset {
 	Map<float[], float[]> data = new HashMap<float[], float[]>();
-	int size;
+	private int size;
 	public Dataset(float[][] in, float[][] target)
 	{
 		assert(in.length == target.length) : in.length + " != " + target.length;
