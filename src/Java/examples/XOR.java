@@ -1,13 +1,16 @@
 package Java.examples;
 
 import Java.neuralNetwork.*;
+import Java.neuralNetwork.feedforward.FeedforwardNeuralNetwork;
+import Java.neuralNetwork.functions.Activation;
+import Java.neuralNetwork.functions.Initialization;
 
 public class XOR {
 	public static void main(String[] args)
 	{
 		float[][] in = new float[][]{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
 				target = new float[][] {{0}, {1}, {1}, {0}};
-		NeuralNetwork network = new NeuralNetwork(
+		FeedforwardNeuralNetwork network = new FeedforwardNeuralNetwork(
 				new int[] {2, 4, 1}, 
 				Activation.sigmoid(), 
 				Initialization.randomUniform() 

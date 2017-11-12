@@ -3,6 +3,8 @@ package Java.test;
 import java.util.*;
 
 import Java.neuralNetwork.*;
+import Java.neuralNetwork.feedforward.FeedforwardNeuralNetwork;
+import Java.neuralNetwork.functions.*;
 
 import java.io.*;
 
@@ -11,7 +13,7 @@ public class Test {
 	{
 		float[][] in = new float[][]{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
 				target = new float[][] {{0}, {1}, {1}, {0}};
-		NeuralNetwork network = new NeuralNetwork(
+		FeedforwardNeuralNetwork network = new FeedforwardNeuralNetwork(
 				new int[] {2, 5, 1}, 
 				Activation.sigmoid(), 
 				Initialization.randomUniform() 
