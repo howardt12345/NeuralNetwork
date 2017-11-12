@@ -46,12 +46,13 @@ public class NeuralNetwork {
 		}
 		return layers[layers()-1].outputs();
 	}
-	public void train(int epochs, 
+	public float train(int epochs, 
 			Dataset data,
 			float learnRate)
 	{
 		BackPropagation train = new BackPropagation(this, data, learnRate);
-		train.train(epochs);
+		float tmp = train.train(epochs);
+		return tmp;
 	}
 	public Layer get(int index)
 	{
