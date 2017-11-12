@@ -16,7 +16,10 @@ public class Test {
 				Activation.sigmoid(), 
 				Initialization.randomUniform() 
 				);
+		long start = System.nanoTime(), end;
 		network.train(10000, new Dataset(in, target), 3);
+		end = System.nanoTime();
+		System.out.println(end-start);
 		for(int a = 0; a < in.length; a++)
 		{
 			System.out.println("Test data " + a + ":");
@@ -26,6 +29,8 @@ public class Test {
 			System.out.println();
 			for(int b = 0; b < out.length; b++)
 				System.out.print("Expected: " + target[a][b] + " ");
+			for(int b = 0; b < out.length; b++)
+				System.out.print("Error: " + Cost.quadratic().f(out, target[a]) + " ");
 			System.out.println('\n');
 		}
 		network.print();

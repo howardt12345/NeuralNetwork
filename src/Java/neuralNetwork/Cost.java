@@ -13,8 +13,8 @@ public abstract class Cost {
 				assert(A.length == E.length);
 				float tmp = 0;
 				for(int a = 0; a < A.length; a++)
-					tmp += 0.5f*Math.pow(A[a] - E[a], 2);
-				return tmp;
+					tmp += Math.pow(A[a] - E[a], 2);
+				return 0.5f*tmp;
 			}
 			public float[] delta(float[] A, float[] E) {
 				return Utils.subtract(A, E);
