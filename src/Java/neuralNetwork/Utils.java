@@ -1,9 +1,8 @@
 package Java.neuralNetwork;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.util.function.Function;
+import java.io.*;
+import java.util.*;
+import java.util.function.*;
 import java.util.stream.*;
 
 public class Utils {
@@ -89,6 +88,13 @@ public class Utils {
 		float tmp = 0;
 		for(int a = 0; a < x.length; a++)
 			tmp += x[a];
+		return tmp;
+	}
+	public static float sum(List<Float> x)
+	{
+		float tmp = 0;
+		for(int a = 0; a < x.size(); a++)
+			tmp += x.get(a);
 		return tmp;
 	}
 	public static float sigmoid(float x)
