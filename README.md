@@ -1,3 +1,3 @@
 # NeuralNetwork
-A Neural Network from scratch
+A Neural Network from scratch.
 # Getting Started
