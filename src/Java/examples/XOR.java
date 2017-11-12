@@ -12,7 +12,7 @@ public class XOR {
 				Activation.sigmoid(), 
 				Initialization.randomUniform() 
 				);
-		network.train(10000, in, target, 3);
+		network.train(10000, new Dataset(in, target), 3);
 		for(int a = 0; a < in.length; a++)
 		{
 			System.out.println("Test data " + a + ":");
