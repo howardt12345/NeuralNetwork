@@ -1,4 +1,6 @@
-package Java.neuralNetwork;
+package Java.neuralNetwork.training;
+
+import Java.neuralNetwork.Dataset;
 
 public class Training {
 	private float error = 1;
@@ -11,6 +13,10 @@ public class Training {
 	public void train()
 	{
 		
+	}
+	public Dataset getData()
+	{
+		return data;
 	}
 	public float getError()
 	{

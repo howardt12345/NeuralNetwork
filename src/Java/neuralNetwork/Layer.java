@@ -2,54 +2,60 @@ package Java.neuralNetwork;
 
 import java.util.*;
 import java.util.stream.*;
+
+import Java.neuralNetwork.Utils;
+import Java.neuralNetwork.functions.Activation;
+
 import java.util.function.*;
 import java.io.*;
 
 public class Layer {
-	protected float[] layer, outputs, bias;
+	private float[] layer;
+	protected float[] outputs;
+	private float[] bias;
 	private Activation activation;
 	
 	public Layer(int neurons)
 	{
-		this.layer = new float[neurons];
+		this.setLayer(new float[neurons]);
 		this.outputs = new float[neurons];
-		this.bias = new float[neurons];
-		Arrays.fill(bias, 0.1f);
+		this.setBias(new float[neurons]);
+		Arrays.fill(getBias(), 0.1f);
 	}
 	public Layer(int neurons, Activation a)
 	{
-		this.layer = new float[neurons];
+		this.setLayer(new float[neurons]);
 		this.outputs = new float[neurons];
-		this.bias = new float[neurons];
-		Arrays.fill(bias, 0.1f);
+		this.setBias(new float[neurons]);
+		Arrays.fill(getBias(), 0.1f);
 		this.activation = a;
 	}
 	public Layer(float[] layer)
 	{
-		this.layer = layer;
+		this.setLayer(layer);
 		this.outputs = new float[layer.length];
-		this.bias = new float[layer.length];
-		Arrays.fill(bias, 0.1f);
+		this.setBias(new float[layer.length]);
+		Arrays.fill(getBias(), 0.1f);
 	}
 	public Layer(float[] layer, Activation a)
 	{
-		this.layer = layer;
+		this.setLayer(layer);
 		this.outputs = new float[layer.length];
-		this.bias = new float[layer.length];
-		Arrays.fill(bias, 0.1f);
+		this.setBias(new float[layer.length]);
+		Arrays.fill(getBias(), 0.1f);
 		this.activation = a;
 	}
 	public void updateOutputs()
 	{
-		outputs = getActivation().f(Utils.add(layer, bias));
+		outputs = getActivation().f(Utils.add(layer, getBias()));
 	}
 	public void updateBiases(float[] nebla_b, float eta, float length)
 	{
-		bias = Utils.subtract(bias, Utils.multiply(nebla_b, eta/length));
+		setBias(Utils.subtract(getBias(), Utils.multiply(nebla_b, eta/length)));
 	}
 	public int size()
 	{
-		assert((outputs.length | bias.length) == layer.length);
+		assert((outputs.length | getBias().length) == layer.length);
 		return layer.length;
 	}
 	public float[] outputs()
@@ -64,7 +70,7 @@ public class Layer {
 	{
 		return getActivation().der(layer);
 	}
-	protected void setValues(float[] values)
+	public void setValues(float[] values)
 	{
 		assert(values.length == this.layer.length) : values.length + " != " + this.layer.length;
 		this.outputs = values;
@@ -80,5 +86,14 @@ public class Layer {
 	public float get(int index)
 	{
 		return layer[index];
+	}
+	public float[] getBias() {
+		return bias;
+	}
+	public void setBias(float[] bias) {
+		this.bias = bias;
+	}
+	public void setLayer(float[] layer) {
+		this.layer = layer;
 	}
 }

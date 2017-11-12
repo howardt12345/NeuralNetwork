@@ -1,6 +1,8 @@
-package Java.neuralNetwork;
+package Java.neuralNetwork.functions;
 
 import java.util.stream.*;
+
+import Java.neuralNetwork.Connection;
 
 public abstract class Initialization {
 	private Initialization() {}
@@ -39,7 +41,7 @@ public abstract class Initialization {
 			}
 			
 			public void initialize(Connection c) {
-				IntStream.range(0, c.size()).forEach(a -> c.weights.matrix[a] = f(0, 0));
+				IntStream.range(0, c.size()).forEach(a -> c.getWeights().matrix()[a] = f(0, 0));
 			}
 		};
 	}
@@ -52,7 +54,7 @@ public abstract class Initialization {
 			}
 			
 			public void initialize(Connection c) {
-				IntStream.range(0, c.size()).forEach(a -> c.weights.matrix[a] = f(0, 0));
+				IntStream.range(0, c.size()).forEach(a -> c.getWeights().matrix()[a] = f(0, 0));
 			}
 		};
 	}
@@ -65,7 +67,7 @@ public abstract class Initialization {
 			}
 			
 			public void initialize(Connection c) {
-				IntStream.range(0, c.size()).forEach(a -> c.weights.matrix[a] = f(x, 0));
+				IntStream.range(0, c.size()).forEach(a -> c.getWeights().matrix()[a] = f(x, 0));
 			}
 		};
 	}
@@ -78,7 +80,7 @@ public abstract class Initialization {
 			}
 			
 			public void initialize(Connection c) {
-				IntStream.range(0, c.size()).forEach(a -> c.weights.matrix[a] = f(c.getInput().size(), c.getOutput().size()));
+				IntStream.range(0, c.size()).forEach(a -> c.getWeights().matrix()[a] = f(c.getInput().size(), c.getOutput().size()));
 			}
 		};
 	}
@@ -91,7 +93,7 @@ public abstract class Initialization {
 			}
 			
 			public void initialize(Connection c) {
-				IntStream.range(0, c.size()).forEach(a -> c.weights.matrix[a] = f(c.getInput().size(), c.getOutput().size()));
+				IntStream.range(0, c.size()).forEach(a -> c.getWeights().matrix()[a] = f(c.getInput().size(), c.getOutput().size()));
 			}
 		};
 	}
@@ -104,7 +106,7 @@ public abstract class Initialization {
 			}
 			
 			public void initialize(Connection c) {
-				IntStream.range(0, c.size()).forEach(a -> c.weights.matrix[a] = f(c.getInput().size(), c.getOutput().size()));
+				IntStream.range(0, c.size()).forEach(a -> c.getWeights().matrix()[a] = f(c.getInput().size(), c.getOutput().size()));
 			}
 		};
 	}
@@ -117,7 +119,7 @@ public abstract class Initialization {
 			}
 			
 			public void initialize(Connection c) {
-				IntStream.range(0, c.size()).forEach(a -> c.weights.matrix[a] = f(c.getInput().size(), c.getOutput().size()));
+				IntStream.range(0, c.size()).forEach(a -> c.getWeights().matrix()[a] = f(c.getInput().size(), c.getOutput().size()));
 			}
 		};
 	}
@@ -130,7 +132,7 @@ public abstract class Initialization {
 			}
 			
 			public void initialize(Connection c) {
-				IntStream.range(0, c.size()).forEach(a -> c.weights.matrix[a] = f(c.getInput().size(), c.getOutput().size()));
+				IntStream.range(0, c.size()).forEach(a -> c.getWeights().matrix()[a] = f(c.getInput().size(), c.getOutput().size()));
 			}
 		};
 	}
@@ -143,7 +145,7 @@ public abstract class Initialization {
 			}
 			
 			public void initialize(Connection c) {
-				IntStream.range(0, c.size()).forEach(a -> c.weights.matrix[a] = f(c.getInput().size(), c.getOutput().size()));
+				IntStream.range(0, c.size()).forEach(a -> c.getWeights().matrix()[a] = f(c.getInput().size(), c.getOutput().size()));
 			}
 		};
 	}
@@ -156,7 +158,7 @@ public abstract class Initialization {
 			}
 			
 			public void initialize(Connection c) {
-				IntStream.range(0, c.size()).forEach(a -> c.weights.matrix[a] = f(c.getInput().size(), 1));
+				IntStream.range(0, c.size()).forEach(a -> c.getWeights().matrix()[a] = f(c.getInput().size(), 1));
 			}
 		};
 	}
@@ -169,7 +171,7 @@ public abstract class Initialization {
 			}
 			
 			public void initialize(Connection c) {
-				IntStream.range(0, c.size()).forEach(a -> c.weights.matrix[a] = f(c.getInput().size(), (float) Math.sqrt(2)));
+				IntStream.range(0, c.size()).forEach(a -> c.getWeights().matrix()[a] = f(c.getInput().size(), (float) Math.sqrt(2)));
 			}
 		};
 	}
@@ -182,7 +184,7 @@ public abstract class Initialization {
 			}
 			
 			public void initialize(Connection c) {
-				IntStream.range(0, c.size()).forEach(a -> c.weights.matrix[a] = f(c.getInput().size(), (float) Math.sqrt(2/(1+0.01*2))));
+				IntStream.range(0, c.size()).forEach(a -> c.getWeights().matrix()[a] = f(c.getInput().size(), (float) Math.sqrt(2/(1+0.01*2))));
 			}
 		};
 	}
@@ -195,7 +197,7 @@ public abstract class Initialization {
 			}
 			
 			public void initialize(Connection c) {
-				IntStream.range(0, c.size()).forEach(a -> c.weights.matrix[a] = f(c.getInput().size(), 0));
+				IntStream.range(0, c.size()).forEach(a -> c.getWeights().matrix()[a] = f(c.getInput().size(), 0));
 			}
 		};
 	}

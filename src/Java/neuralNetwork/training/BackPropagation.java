@@ -1,14 +1,18 @@
-package Java.neuralNetwork;
+package Java.neuralNetwork.training;
 
 import java.util.*;
 
+import Java.neuralNetwork.*;
+import Java.neuralNetwork.feedforward.FeedforwardNeuralNetwork;
+import Java.neuralNetwork.functions.Cost;
+
 public class BackPropagation extends Training {
-	private NeuralNetwork network;
+	private FeedforwardNeuralNetwork network;
 	private float learnRate;
 	Cost cost = Cost.quadratic();
 	
 	public BackPropagation(
-			NeuralNetwork n, 
+			FeedforwardNeuralNetwork n, 
 			Dataset data,
 			float learnRate)
 	{
@@ -28,7 +32,7 @@ public class BackPropagation extends Training {
 	public float iterate()
 	{
 		List<Float> errors = new ArrayList<Float>();
-		int n = network.weights.length, size = data.size();
+		int n = network.getWeights().length, size = data.size();
 		float[][] nebla_b = new float[n][];
 		for(int a = 0; a < nebla_b.length; a++)
 		{
@@ -40,41 +44,41 @@ public class BackPropagation extends Training {
 				float[] out = network.feedForward(x);
 				float[] delta = Utils.multiply(
 						cost.delta(out, data.get(x)), 
-						network.layers[n].derivatives()
+						network.get(n).derivatives()
 						);
 				nebla_b[n-1] = Utils.add(nebla_b[n-1], delta);
-				network.weights[n-1].deltaWeights = Matrix.add(
-						network.weights[n-1].deltaWeights, 
+				network.getWeights()[n-1].setDeltaWeights(Matrix.add(
+						network.getWeights()[n-1].getDeltaWeights(), 
 						Matrix.multiply(
 								new Matrix(delta), 
-								new Matrix(network.get(n-1).outputs
+								new Matrix(network.get(n-1).outputs()
 										).transpose()
 								).transpose()
-						);
+						));
 				for(int l = 2; l <= n; l++)
 				{
 					delta = Matrix.haramardProduct(
 							Matrix.multiply(
-									network.weights[n-l+1].weights, 
+									network.getWeights()[n-l+1].getWeights(), 
 									new Matrix(delta)
 									), 
-							new Matrix(network.get(n-l+1).outputs)).matrix();
+							new Matrix(network.get(n-l+1).outputs())).matrix();
 					nebla_b[n-l] = Utils.add(nebla_b[n-l], delta);
-					network.weights[n-l].deltaWeights = Matrix.add(
-							network.weights[n-l].deltaWeights, 
+					network.getWeights()[n-l].setDeltaWeights(Matrix.add(
+							network.getWeights()[n-l].getDeltaWeights(), 
 							Matrix.multiply(
 									new Matrix(delta), 
-									new Matrix(network.get(n-l).outputs
+									new Matrix(network.get(n-l).outputs()
 											).transpose()
 									).transpose()
-							);
+							));
 				}
 				errors.add(cost.f(out, data.get(x)));
 			}
 		});
 		for(int a = 0; a < n; a++)
 		{
-			network.weights[a].adjustWeights(learnRate, size);
+			network.getWeights()[a].adjustWeights(learnRate, size);
 			network.get(a+1).updateBiases(nebla_b[a], learnRate, size);
 		}
 		return Utils.sum(errors);

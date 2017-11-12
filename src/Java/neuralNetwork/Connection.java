@@ -1,7 +1,11 @@
 package Java.neuralNetwork;
 
+import Java.neuralNetwork.Layer;
+import Java.neuralNetwork.functions.Initialization;
+
 public class Connection {
-	protected Matrix weights, deltaWeights;
+	private Matrix weights;
+	private Matrix deltaWeights;
 	private Layer input, output;
 	
 	public Connection(Layer input, Layer output, Initialization i)
@@ -12,23 +16,23 @@ public class Connection {
 	}
 	private void initialize(Initialization i)
 	{
-		weights = new Matrix(input.size(), output.size());
-		deltaWeights = Matrix.zero(input.size(), output.size());
+		setWeights(new Matrix(input.size(), output.size()));
+		setDeltaWeights(Matrix.zero(input.size(), output.size()));
 		i.initialize(this);
 	}
 	public void compute()
 	{
-		output.layer = Matrix.multiply(new Matrix(input.outputs).transpose(),
-				weights).matrix;
+		output.setLayer(Matrix.multiply(new Matrix(input.outputs).transpose(),
+				getWeights()).matrix);
 		output.updateOutputs();
 	}
 	public void adjustWeights(float eta, int length)
 	{		
-		weights = Matrix.subtract(weights, Matrix.scalarMultiply(deltaWeights, eta/length));
+		setWeights(Matrix.subtract(getWeights(), Matrix.scalarMultiply(getDeltaWeights(), eta/length)));
 	}
 	public int size()
 	{
-		return weights.matrix.length;
+		return getWeights().matrix.length;
 	}
 	public Layer getInput()
 	{
@@ -37,5 +41,21 @@ public class Connection {
 	public Layer getOutput()
 	{
 		return output;
+	}
+	public Matrix getWeights() 
+	{
+		return weights;
+	}
+	public void setWeights(Matrix weights) 
+	{
+		this.weights = weights;
+	}
+	public Matrix getDeltaWeights()
+	{
+		return deltaWeights;
+	}
+	public void setDeltaWeights(Matrix deltaWeights) 
+	{
+		this.deltaWeights = deltaWeights;
 	}
 }
