@@ -1,8 +1,6 @@
 
-import java.io.*;
-import java.text.*;
 import java.util.*;
-import java.util.stream.*;
+import java.io.*;
 
 import NeuralNetwork.*;
 
@@ -16,10 +14,21 @@ public class Test {
 				Activation.sigmoid(), 
 				Initialization.randomUniform() 
 				);
-		network.train(10000, in, target, 3);
 		for(int a = 0; a < in.length; a++)
 		{
-			System.out.println("Test data " + a);
+			System.out.println("Input data " + a + ":");
+			Utils.print(in[a]);
+			System.out.println("Target output of input data " + a + ":");
+			Utils.print(target[a]);
+			System.out.println();
+		}
+		System.out.println();
+		System.out.println("Training neural network 10000 times");
+		network.train(10000, in, target, 3);
+		System.out.println();
+		for(int a = 0; a < in.length; a++)
+		{
+			System.out.println("Test data " + a + ":");
 			float[] out = network.feedForward(in[a]);
 			for(int b = 0; b < out.length; b++)
 				System.out.print("Output: " + out[b] + " ");
@@ -28,7 +37,7 @@ public class Test {
 				System.out.print("Expected: " + target[a][b] + " ");
 			//System.out.println();
 			//network.print();
-			System.out.println();
+			System.out.println('\n');
 		}
 /*		float tmp = sc.nextFloat(), tmp1 = sc.nextFloat();
 		float[] out = network.computeOutputs(new float[] {tmp, tmp1});
