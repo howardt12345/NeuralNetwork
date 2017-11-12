@@ -1,3 +1,4 @@
+package test;
 
 import java.util.*;
 import java.io.*;
@@ -145,3 +146,4 @@ class Node implements Comparable<Node>
 		return this.freq - that.freq;
 	}
 }
+
