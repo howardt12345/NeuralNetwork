@@ -7,7 +7,7 @@ public abstract class Cost {
 	public abstract float[] delta(float[] A, float[] E);
 	private Cost () {}
 	
-	public static Cost quadratic()
+	public static Cost mst()
 	{
 		return new Cost() {
 			

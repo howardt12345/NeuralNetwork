@@ -52,9 +52,10 @@ public class FeedforwardNeuralNetwork {
 	}
 	public float train(int epochs, 
 			Dataset data,
-			float learnRate)
+			float learnRate,
+			Cost cost)
 	{
-		BackPropagation train = new BackPropagation(this, data, learnRate);
+		BackPropagation train = new BackPropagation(this, data, learnRate, cost);
 		float tmp = train.train(epochs);
 		return tmp;
 	}

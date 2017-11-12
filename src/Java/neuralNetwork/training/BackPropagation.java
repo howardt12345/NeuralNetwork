@@ -9,16 +9,18 @@ import Java.neuralNetwork.functions.Cost;
 public class BackPropagation extends Training {
 	private FeedforwardNeuralNetwork network;
 	private float learnRate;
-	Cost cost = Cost.quadratic();
+	Cost cost = Cost.mst();
 	
 	public BackPropagation(
 			FeedforwardNeuralNetwork n, 
 			Dataset data,
-			float learnRate)
+			float learnRate,
+			Cost cost)
 	{
 		super(data);
 		this.network = n;
 		this.learnRate = learnRate;
+		this.cost = cost;
 	}
 	public float train(int epochs)
 	{

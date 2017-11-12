@@ -19,7 +19,7 @@ public class Test {
 				Initialization.randomUniform() 
 				);
 		long start = System.nanoTime(), end;
-		network.train(10000, new Dataset(in, target), 3);
+		network.train(10000, new Dataset(in, target), 0.15f, Cost.mst());
 		end = System.nanoTime();
 		System.out.println(end-start);
 		for(int a = 0; a < in.length; a++)
@@ -32,7 +32,7 @@ public class Test {
 			for(int b = 0; b < out.length; b++)
 				System.out.print("Expected: " + target[a][b] + " ");
 			for(int b = 0; b < out.length; b++)
-				System.out.print("Error: " + Cost.quadratic().f(out, target[a]) + " ");
+				System.out.print("Error: " + Cost.mst().f(out, target[a]) + " ");
 			System.out.println('\n');
 		}
 		network.print();
