@@ -1,4 +1,4 @@
-package NeuralNetwork;
+package neuralNetwork;
 
 public class Connection {
 	protected Matrix weights, deltaWeights;

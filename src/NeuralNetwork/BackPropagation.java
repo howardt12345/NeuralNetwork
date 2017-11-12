@@ -1,4 +1,4 @@
-package NeuralNetwork;
+package neuralNetwork;
 
 import java.util.*;
 
@@ -52,7 +52,6 @@ public class BackPropagation extends Training {
 							new Matrix(network.get(n-1).outputs
 									).transpose()
 							).transpose());
-			
 			for(int l = 2; l < n; l++)
 			{
 				delta = Matrix.haramardProduct(
@@ -66,7 +65,7 @@ public class BackPropagation extends Training {
 						network.weights[n-l].deltaWeights, 
 						Matrix.multiply(
 								new Matrix(delta), 
-								new Matrix(network.get(n-l).outputs).transpose())
+								new Matrix(network.get(n-l-1).outputs).transpose())
 						);
 			}
 		}

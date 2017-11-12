@@ -1,4 +1,4 @@
-package NeuralNetwork;
+package neuralNetwork;
 
 import java.io.*;
 import java.nio.file.Files;

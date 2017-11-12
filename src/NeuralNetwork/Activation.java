@@ -1,4 +1,4 @@
-package NeuralNetwork;
+package neuralNetwork;
 
 import java.util.stream.*;
 
@@ -6,6 +6,9 @@ public abstract class Activation {
 	private Activation() {}
 	public abstract float[] f(float[] x);
 	public abstract float[] der(float[] x);
+	/** <p>The identity activation function, given by f(x) = x.</p>
+	 * <p>The derivative of this function is f'(x) = 1.</p>
+	 */
 	public static Activation identity()
 	{
 		return new Activation() {
@@ -17,6 +20,9 @@ public abstract class Activation {
 			}
 		};
 	}
+	/** <p>The binary step function activation function, given by f(x) = x.</p>
+	 * <p>The derivative of this function is f'(x) = 1.</p>
+	 */
 	public static Activation binaryStep()
 	{
 		return new Activation() {

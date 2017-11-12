@@ -1,5 +1,8 @@
-package NeuralNetwork;
+package neuralNetwork;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.function.Function;
 import java.util.stream.*;
 
@@ -105,5 +108,14 @@ public class Utils {
 		float[] A = new float[x.length];
 		IntStream.range(0, x.length).forEach(a -> A[a] = exp(x[a]));
 		return A;
+	}
+	public static void setOutput(String filename)
+	{
+		try {
+			PrintStream out = new PrintStream(new FileOutputStream(filename));
+			System.setOut(out);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -1,4 +1,4 @@
-package NeuralNetwork;
+package neuralNetwork;
 
 public class Training {
 	private float error = 1;

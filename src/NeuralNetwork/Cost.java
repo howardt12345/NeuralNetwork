@@ -1,4 +1,4 @@
-package NeuralNetwork;
+package neuralNetwork;
 
 public abstract class Cost {
 	public abstract float f(float[] A, float[] E);
