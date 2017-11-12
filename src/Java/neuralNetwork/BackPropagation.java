@@ -66,27 +66,6 @@ public class BackPropagation extends Training {
 								).transpose()
 						);
 			}
-/*			for(int l = 2; l <= n; l++)
-			{
-				System.out.println(n-l);
-				new Matrix(delta).print();
-				network.weights[n-l+1].weights.transpose().print();
-				delta = Matrix.haramardProduct(
-						Matrix.multiply(
-								network.weights[n-l+1].weights,
-								new Matrix(delta)
-								), 
-						new Matrix(network.get(n-l+1).outputs)
-						).matrix();
-				nebla_b[n-l] = Utils.add(nebla_b[n-l], delta);
-				network.weights[n-l].deltaWeights = Matrix.add(
-						network.weights[n-l].deltaWeights, 
-						Matrix.multiply(
-								new Matrix(delta),
-								new Matrix(network.get(n-l).outputs).transpose()
-								).transpose()
-						);
-			}*/
 		});
 		for(int a = 0; a < n; a++)
 		{
