@@ -138,8 +138,8 @@ public abstract class Activation {
 			}
 		};
 	}
-	/** <p>The Softmax ativation function, given by f(x)_j = exp(x_j)/SUM(exp(x_k)|k=1).</p>
-	 * <p>The derivative of this function is ---.</p>
+	/** <p>The Softmax ativation function, given by f(x)_i = exp(x_i)/SUM(exp(x_j)|j=1).</p>
+	 * <p>The derivative of this function is f'(x)_i = f(x)_i(&#x3B4_ij - f(x)_j).</p>
 	 */
 	public static Activation softMax()
 	{
@@ -152,7 +152,11 @@ public abstract class Activation {
 				return A;
 			}
 			public float[] der(float[] x) {
-				return null;
+				float[] f = f(x), A = new float[x.length];
+				for(int i = 0; i < x.length; i++)
+					for(int j = 0; j < x.length; j++)
+						A[i] = f[i]*((i == j ? 1 : 0) - f[j]);
+				return A;
 			}
 		};
 	}
