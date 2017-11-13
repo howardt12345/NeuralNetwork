@@ -1,7 +1,5 @@
 package neuralNetwork.java.training;
 
-import neuralNetwork.java.*;
-
 public class Training {
 	private float error = 1;
 	protected Dataset trainingSet;

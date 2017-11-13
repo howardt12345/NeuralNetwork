@@ -2,7 +2,6 @@ package neuralNetwork.java.examples.mnist;
 
 import java.util.*;
 
-import neuralNetwork.java.*;
 import neuralNetwork.java.utils.*;
 import neuralNetwork.java.functions.*;
 import neuralNetwork.java.networks.FeedforwardNetwork;
