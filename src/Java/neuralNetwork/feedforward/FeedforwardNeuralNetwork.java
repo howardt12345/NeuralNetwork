@@ -50,6 +50,24 @@ public class FeedforwardNeuralNetwork {
 		}
 		return layers[layers()-1].outputs();
 	}
+	public float[] feedForward(int[] in)
+	{
+		layers[0].setValues(Utils.toFloat(in));
+		for(int a = 0; a < weights.length; a++)
+		{
+			weights[a].compute();
+		}
+		return layers[layers()-1].outputs();
+	}
+	public float[] feedForward(double[] in)
+	{
+		layers[0].setValues(Utils.toFloat(in));
+		for(int a = 0; a < weights.length; a++)
+		{
+			weights[a].compute();
+		}
+		return layers[layers()-1].outputs();
+	}
 	public float train(int epochs, 
 			Dataset data,
 			float learnRate,
