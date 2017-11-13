@@ -1,10 +1,11 @@
-package Java.neuralNetwork;
+package neuralNetwork.java;
 
 import java.util.*;
 import java.util.stream.*;
 
-import Java.neuralNetwork.Utils;
-import Java.neuralNetwork.functions.Activation;
+
+import neuralNetwork.java.*;
+import neuralNetwork.java.functions.Activation;
 
 import java.util.function.*;
 import java.io.*;

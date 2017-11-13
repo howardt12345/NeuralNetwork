@@ -1,8 +1,8 @@
-package Java.neuralNetwork.functions;
+package neuralNetwork.java.functions;
 
 import java.util.stream.*;
 
-import Java.neuralNetwork.Utils;
+import neuralNetwork.java.*;
 
 public abstract class Activation {
 	private Activation() {}

@@ -1,10 +1,10 @@
-package Java.examples.mnist;
+package neuralNetwork.java.examples.mnist;
 
 import java.util.*;
 
-import Java.neuralNetwork.*;
-import Java.neuralNetwork.feedforward.FeedforwardNeuralNetwork;
-import Java.neuralNetwork.functions.*;
+import neuralNetwork.java.*;
+import neuralNetwork.java.feedforward.FeedforwardNeuralNetwork;
+import neuralNetwork.java.functions.*;
 
 public class MNIST {
 	public static void main(String[] args)

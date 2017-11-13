@@ -1,4 +1,4 @@
-package Java.test;
+package neuralNetwork.java.test;
 
 import java.util.*;
 import java.io.*;

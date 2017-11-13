@@ -1,4 +1,4 @@
-package Java.examples.mnist;
+package neuralNetwork.java.examples.mnist;
 
 import static java.lang.String.format;
 

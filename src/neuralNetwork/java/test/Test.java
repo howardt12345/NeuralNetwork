@@ -1,10 +1,10 @@
-package Java.test;
+package neuralNetwork.java.test;
 
 import java.util.*;
 
-import Java.neuralNetwork.*;
-import Java.neuralNetwork.feedforward.FeedforwardNeuralNetwork;
-import Java.neuralNetwork.functions.*;
+import neuralNetwork.java.*;
+import neuralNetwork.java.feedforward.FeedforwardNeuralNetwork;
+import neuralNetwork.java.functions.*;
 
 import java.io.*;
 

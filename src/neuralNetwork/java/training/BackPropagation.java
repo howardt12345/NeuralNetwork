@@ -1,10 +1,10 @@
-package Java.neuralNetwork.training;
+package neuralNetwork.java.training;
 
 import java.util.*;
 
-import Java.neuralNetwork.*;
-import Java.neuralNetwork.feedforward.FeedforwardNeuralNetwork;
-import Java.neuralNetwork.functions.Cost;
+import neuralNetwork.java.*;
+import neuralNetwork.java.feedforward.FeedforwardNeuralNetwork;
+import neuralNetwork.java.functions.Cost;
 
 public class BackPropagation extends Training {
 	private FeedforwardNeuralNetwork network;
@@ -34,18 +34,18 @@ public class BackPropagation extends Training {
 	public float iterate()
 	{
 		List<Float> errors = new ArrayList<Float>();
-		int n = network.getWeights().length, size = data.size();
+		int n = network.getWeights().length, size = trainingSet.size();
 		float[][] nebla_b = new float[n][];
 		for(int a = 0; a < nebla_b.length; a++)
 		{
 			nebla_b[a] = new float[network.get(a+1).size()];
 		}
-		data.getData().parallelStream().forEach(x -> {
+		trainingSet.getData().parallelStream().forEach(x -> {
 			synchronized(errors)
 			{
 				float[] out = network.feedForward(x);
 				float[] delta = Utils.multiply(
-						cost.delta(out, data.get(x)), 
+						cost.delta(out, trainingSet.get(x)), 
 						network.get(n).derivatives()
 						);
 				nebla_b[n-1] = Utils.add(nebla_b[n-1], delta);
@@ -75,7 +75,7 @@ public class BackPropagation extends Training {
 									).transpose()
 							));
 				}
-				errors.add(cost.f(out, data.get(x)));
+				errors.add(cost.f(out, trainingSet.get(x)));
 			}
 		});
 		for(int a = 0; a < n; a++)

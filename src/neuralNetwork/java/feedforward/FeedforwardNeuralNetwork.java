@@ -1,10 +1,10 @@
-package Java.neuralNetwork.feedforward;
+package neuralNetwork.java.feedforward;
 
 import java.util.stream.*;
 
-import Java.neuralNetwork.*;
-import Java.neuralNetwork.functions.*;
-import Java.neuralNetwork.training.*;
+import neuralNetwork.java.*;
+import neuralNetwork.java.functions.*;
+import neuralNetwork.java.training.*;
 
 public class FeedforwardNeuralNetwork {
 	protected Layer[] layers;

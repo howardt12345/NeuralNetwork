@@ -1,8 +1,8 @@
-package Java.examples.xor;
+package neuralNetwork.java.examples.xor;
 
-import Java.neuralNetwork.*;
-import Java.neuralNetwork.feedforward.FeedforwardNeuralNetwork;
-import Java.neuralNetwork.functions.*;
+import neuralNetwork.java.*;
+import neuralNetwork.java.feedforward.FeedforwardNeuralNetwork;
+import neuralNetwork.java.functions.*;
 
 public class XOR {
 	public static void main(String[] args)
