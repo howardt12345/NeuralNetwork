@@ -9,6 +9,10 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <p> from https://github.com/jeffgriffith/mnist-reader.git</p>
+ * @author jeffgriffith
+ */
 public class MnistReader {
 	public static final int LABEL_FILE_MAGIC_NUMBER = 2049;
 	public static final int IMAGE_FILE_MAGIC_NUMBER = 2051;

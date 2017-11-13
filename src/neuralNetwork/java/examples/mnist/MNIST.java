@@ -3,8 +3,10 @@ package neuralNetwork.java.examples.mnist;
 import java.util.*;
 
 import neuralNetwork.java.*;
-import neuralNetwork.java.feedforward.FeedforwardNetwork;
+import neuralNetwork.java.utils.*;
 import neuralNetwork.java.functions.*;
+import neuralNetwork.java.networks.FeedforwardNetwork;
+import neuralNetwork.java.training.Dataset;
 
 public class MNIST {
 	public static void main(String[] args)
@@ -15,7 +17,8 @@ public class MNIST {
 		assert(labels.length == images.size());
 		assert(28 == images.get(0).length);
 		assert(28 == images.get(0)[0].length);
-		for (int i = 0; i < Math.min(10, labels.length); i++) {
+		for (int i = 0; i < Math.min(10, labels.length); i++) 
+		{
 			printf("================= LABEL %d\n", labels[i]);
 			printf("%s", MnistReader.renderImage(images.get(i)));
 		}

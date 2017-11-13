@@ -1,13 +1,11 @@
-package neuralNetwork.java;
+package neuralNetwork.java.layer;
 
 import java.util.*;
 import java.util.stream.*;
 
-
-import neuralNetwork.java.*;
+import neuralNetwork.java.utils.*;
 import neuralNetwork.java.functions.Activation;
 
-import java.util.function.*;
 import java.io.*;
 
 public class Layer {

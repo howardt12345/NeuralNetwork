@@ -1,6 +1,6 @@
 package neuralNetwork.java.functions;
 
-import neuralNetwork.java.*;
+import neuralNetwork.java.utils.*;
 
 public abstract class Cost {
 	public abstract float f(float[] A, float[] E);

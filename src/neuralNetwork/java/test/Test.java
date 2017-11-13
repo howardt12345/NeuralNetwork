@@ -3,8 +3,9 @@ package neuralNetwork.java.test;
 import java.util.*;
 
 import neuralNetwork.java.*;
-import neuralNetwork.java.feedforward.FeedforwardNetwork;
 import neuralNetwork.java.functions.*;
+import neuralNetwork.java.networks.FeedforwardNetwork;
+import neuralNetwork.java.training.Dataset;
 
 import java.io.*;
 

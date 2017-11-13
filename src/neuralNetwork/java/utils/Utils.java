@@ -1,4 +1,4 @@
-package neuralNetwork.java;
+package neuralNetwork.java.utils;
 
 import java.io.*;
 import java.util.*;

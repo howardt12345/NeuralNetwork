@@ -2,9 +2,10 @@ package neuralNetwork.java.training;
 
 import java.util.*;
 
-import neuralNetwork.java.*;
-import neuralNetwork.java.feedforward.FeedforwardNetwork;
+import neuralNetwork.java.utils.*;
 import neuralNetwork.java.functions.Cost;
+import neuralNetwork.java.layer.*;
+import neuralNetwork.java.networks.FeedforwardNetwork;
 
 public class BackPropagation extends Training {
 	private FeedforwardNetwork network;
