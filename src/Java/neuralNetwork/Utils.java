@@ -109,6 +109,10 @@ public class Utils {
 	{
 		return (float)Math.exp(x);
 	}
+	public static float ln(float x)
+	{
+		return (float)Math.log(x);
+	}
 	public static float[] exps(float[] x)
 	{
 		float[] A = new float[x.length];

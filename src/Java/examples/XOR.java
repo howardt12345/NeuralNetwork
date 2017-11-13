@@ -3,6 +3,7 @@ package Java.examples;
 import Java.neuralNetwork.*;
 import Java.neuralNetwork.feedforward.FeedforwardNeuralNetwork;
 import Java.neuralNetwork.functions.Activation;
+import Java.neuralNetwork.functions.Cost;
 import Java.neuralNetwork.functions.Initialization;
 
 public class XOR {
@@ -15,7 +16,7 @@ public class XOR {
 				Activation.sigmoid(), 
 				Initialization.randomUniform() 
 				);
-		network.train(10000, new Dataset(in, target), 3);
+		network.train(10000, new Dataset(in, target), 3, Cost.mst());
 		for(int a = 0; a < in.length; a++)
 		{
 			System.out.println("Test data " + a + ":");
