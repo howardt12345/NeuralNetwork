@@ -3,14 +3,14 @@ package neuralNetwork.java.training;
 import java.util.*;
 
 import neuralNetwork.java.utils.*;
-import neuralNetwork.java.functions.Cost;
-import neuralNetwork.java.layer.*;
+import neuralNetwork.java.functions.*;
 import neuralNetwork.java.networks.FeedforwardNetwork;
 
 public class BackPropagation extends Training {
 	private FeedforwardNetwork network;
 	private float learnRate;
 	Cost cost = Cost.mst();
+	GradientDescent gd = null;
 	
 	public BackPropagation(
 			FeedforwardNetwork n, 
