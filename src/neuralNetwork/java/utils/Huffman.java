@@ -1,4 +1,4 @@
-package neuralNetwork.java.test;
+package neuralNetwork.java.utils;
 
 import java.util.*;
 import java.io.*;
@@ -66,7 +66,7 @@ public class Huffman {
 	    Collections.sort(list, new Comparator<Map.Entry<K, V>>() 
 	    {
 	        public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
-	            return (o1.getValue()).compareTo(o2.getValue());
+	            return (o2.getValue()).compareTo(o1.getValue());
 	        }
 	    });
 	    Map<K, V> result = new LinkedHashMap<K, V>();
