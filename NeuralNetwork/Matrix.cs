@@ -28,7 +28,7 @@ namespace NeuralNetwork
 		public Matrix(String file)
 		{
 
-			.string[][] result = File
+			string[][] result = File
 			.ReadLines(file)
 			.Select(line => line.Split(' '))
 			.ToArray();
