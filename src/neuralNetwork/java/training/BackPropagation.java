@@ -45,9 +45,9 @@ public class BackPropagation extends Training {
 			synchronized(errors)
 			{
 				float[] out = network.feedForward(x);
-				float[] delta = Utils.multiply(
-						cost.delta(out, trainingSet.get(x)), 
-						network.get(n).derivatives()
+				float[] delta = cost.delta(out, 
+							trainingSet.get(x), 
+							network.get(n).derivatives()
 						);
 				nebla_b[n-1] = Utils.add(nebla_b[n-1], delta);
 				network.getWeights()[n-1].setDeltaWeights(Matrix.add(

@@ -33,7 +33,7 @@ public class Test {
 			for(int b = 0; b < out.length; b++)
 				System.out.print("Expected: " + target[a][b] + " ");
 			for(int b = 0; b < out.length; b++)
-				System.out.print("Error: " + Cost.crossEntropy().f(out, target[a]) + " ");
+				System.out.print("Error: " + Cost.mst().f(out, target[a]) + " ");
 			System.out.println('\n');
 		}
 		network.print();

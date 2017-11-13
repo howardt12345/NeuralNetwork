@@ -4,7 +4,7 @@ import neuralNetwork.java.utils.*;
 
 public abstract class Cost {
 	public abstract float f(float[] A, float[] E);
-	public abstract float[] delta(float[] A, float[] E);
+	public abstract float[] delta(float[] A, float[] E, float[] derivatives);
 	private Cost () {}
 	
 	public static Cost mst()
@@ -20,9 +20,9 @@ public abstract class Cost {
 				return 0.5f*tmp;
 			}
 			@Override
-			public float[] delta(float[] A, float[] E) 
+			public float[] delta(float[] A, float[] E, float[] derivatives) 
 			{
-				return Utils.subtract(A, E);
+				return Utils.multiply(Utils.subtract(A, E), derivatives);
 			}
 		};
 	}
@@ -39,7 +39,7 @@ public abstract class Cost {
 				return tmp;
 			}
 			@Override
-			public float[] delta(float[] A, float[] E) 
+			public float[] delta(float[] A, float[] E, float[] derivatives) 
 			{
 /*				assert(A.length == E.length) : A.length + " != " + E.length;
 				float[] tmp = new float[A.length];
