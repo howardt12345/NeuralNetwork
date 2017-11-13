@@ -22,7 +22,7 @@ public class Test {
 		network.train(10000, new Dataset(in, target), 0.15f, Cost.mst());
 		end = System.nanoTime();
 		System.out.println(end-start);
-/*		for(int a = 0; a < in.length; a++)
+		for(int a = 0; a < in.length; a++)
 		{
 			System.out.println("Test data " + a + ":");
 			float[] out = network.feedForward(in[a]);
@@ -34,8 +34,8 @@ public class Test {
 			for(int b = 0; b < out.length; b++)
 				System.out.print("Error: " + Cost.crossEntropy().f(out, target[a]) + " ");
 			System.out.println('\n');
-		}*/
-		//network.print();
+		}
+		network.print();
 	}
 	@SuppressWarnings("unused")
 	private static void setOutput(String filename)
