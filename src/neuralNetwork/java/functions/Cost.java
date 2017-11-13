@@ -35,7 +35,7 @@ public abstract class Cost {
 				assert(A.length == E.length) : A.length + " != " + E.length;
 				float tmp = 0;
 				for(int a = 0; a < A.length; a++)
-					tmp += -(E[a]  *Utils.ln(A[a]) + (1-E[a])*Utils.ln(1 - A[a]));
+					tmp += -(E[a] * Utils.ln(A[a]) + (1-E[a])*Utils.ln(1 - A[a]));
 				return tmp;
 			}
 			@Override

@@ -15,14 +15,14 @@ public class Layer {
 		this.setLayer(new float[neurons]);
 		this.outputs = new float[neurons];
 		this.setBias(new float[neurons]);
-		Arrays.fill(getBias(), 0.1f);
+		Arrays.fill(biases(), 0.1f);
 	}
 	public Layer(int neurons, Activation a)
 	{
 		this.setLayer(new float[neurons]);
 		this.outputs = new float[neurons];
 		this.setBias(new float[neurons]);
-		Arrays.fill(getBias(), 0.1f);
+		Arrays.fill(biases(), 0.1f);
 		this.activation = a;
 	}
 	public Layer(float[] layer)
@@ -30,27 +30,27 @@ public class Layer {
 		this.setLayer(layer);
 		this.outputs = new float[layer.length];
 		this.setBias(new float[layer.length]);
-		Arrays.fill(getBias(), 0.1f);
+		Arrays.fill(biases(), 0.1f);
 	}
 	public Layer(float[] layer, Activation a)
 	{
 		this.setLayer(layer);
 		this.outputs = new float[layer.length];
 		this.setBias(new float[layer.length]);
-		Arrays.fill(getBias(), 0.1f);
+		Arrays.fill(biases(), 0.1f);
 		this.activation = a;
 	}
 	public void updateOutputs()
 	{
-		outputs = getActivation().f(Utils.add(layer, getBias()));
+		outputs = getActivation().f(Utils.add(layer, biases()));
 	}
 	public void updateBiases(float[] nebla_b, float eta, float length)
 	{
-		setBias(Utils.subtract(getBias(), Utils.multiply(nebla_b, eta/length)));
+		setBias(Utils.subtract(biases(), Utils.multiply(nebla_b, eta/length)));
 	}
 	public int size()
 	{
-		assert((outputs.length | getBias().length) == layer.length);
+		assert((outputs.length | biases().length) == layer.length);
 		return layer.length;
 	}
 	public float[] outputs()
@@ -82,7 +82,7 @@ public class Layer {
 	{
 		return layer[index];
 	}
-	public float[] getBias() {
+	public float[] biases() {
 		return bias;
 	}
 	public void setBias(float[] bias) {

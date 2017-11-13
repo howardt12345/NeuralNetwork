@@ -20,7 +20,7 @@ public class Test {
 				Initialization.randomUniform() 
 				);
 		long start = System.nanoTime(), end;
-		network.train(10000, new Dataset(in, target), 0.15f, Cost.mst());
+		network.train(10000, new Dataset(in, target), 0.2f, Cost.mst());
 		end = System.nanoTime();
 		System.out.println(end-start);
 		for(int a = 0; a < in.length; a++)

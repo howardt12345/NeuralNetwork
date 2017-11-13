@@ -114,12 +114,12 @@ public class FeedforwardNetwork extends NeuralNetwork {
 		IntStream.range(0, layers()).forEach(a -> 
 		{
 			System.out.println("Layer " + a + ":");
-			System.out.println("Layer:");
+			System.out.println("Values:");
 			Utils.print(get(a).values());
 			System.out.println("Outputs:");
 			Utils.print(get(a).outputs());
 			System.out.println("Biases:");
-			Utils.print(get(a).getBias());
+			Utils.print(get(a).biases());
 			System.out.println();
 		});
 		IntStream.range(0, layers()-1).forEach(a -> 

@@ -23,7 +23,7 @@ public class Connection {
 	}
 	public void compute()
 	{
-		output.setLayer(Matrix.multiply(new Matrix(input.outputs).transpose(),
+		output.setLayer(Matrix.multiply(new Matrix(input.outputs()).transpose(),
 				getWeights()).matrix());
 		output.updateOutputs();
 	}
