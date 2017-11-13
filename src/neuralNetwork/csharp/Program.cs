@@ -14,7 +14,7 @@ namespace NeuralNetwork
 	{
 		public static void Main()
 		{
-			int runs = 10, size = 206;
+			/*int runs = 10, size = 206;
 			Matrix[] test = new Matrix[size];
 			for (int a = 0; a < test.Length; a++)
 			{
@@ -63,7 +63,8 @@ namespace NeuralNetwork
 				Console.WriteLine("Best time for Matrix {0} and {1}: {2} ms", a, (a + 1), best[a]);
 			}
 			Console.WriteLine("*****");
-			Console.WriteLine("Average time for runs: {0} seconds", (average/runs));
+			Console.WriteLine("Average time for runs: {0} seconds", (average/runs));*/
+			Console.WriteLine("Hello World");
 			Console.ReadLine();
 		}
 	}

@@ -1,7 +1,0 @@
-C:\Shared\source\repos\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.exe.config
-C:\Shared\source\repos\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.exe
-C:\Shared\source\repos\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.pdb
-C:\Shared\source\repos\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.csproj.CoreCompileInputs.cache
-C:\Shared\source\repos\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.exe
-C:\Shared\source\repos\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.pdb
-C:\Shared\source\repos\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.csprojResolveAssemblyReference.cache
