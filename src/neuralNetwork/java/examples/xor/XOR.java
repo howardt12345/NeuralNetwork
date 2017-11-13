@@ -1,7 +1,7 @@
 package neuralNetwork.java.examples.xor;
 
 import neuralNetwork.java.*;
-import neuralNetwork.java.feedforward.FeedforwardNeuralNetwork;
+import neuralNetwork.java.feedforward.FeedforwardNetwork;
 import neuralNetwork.java.functions.*;
 
 public class XOR {
@@ -9,7 +9,7 @@ public class XOR {
 	{
 		float[][] in = new float[][]{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
 				target = new float[][] {{0}, {1}, {1}, {0}};
-		FeedforwardNeuralNetwork network = new FeedforwardNeuralNetwork(
+		FeedforwardNetwork network = new FeedforwardNetwork(
 				new int[] {2, 4, 1}, 
 				Activation.sigmoid(), 
 				Initialization.randomUniform() 

@@ -3,7 +3,7 @@ package neuralNetwork.java.examples.mnist;
 import java.util.*;
 
 import neuralNetwork.java.*;
-import neuralNetwork.java.feedforward.FeedforwardNeuralNetwork;
+import neuralNetwork.java.feedforward.FeedforwardNetwork;
 import neuralNetwork.java.functions.*;
 
 public class MNIST {
@@ -19,7 +19,7 @@ public class MNIST {
 			printf("================= LABEL %d\n", labels[i]);
 			printf("%s", MnistReader.renderImage(images.get(i)));
 		}
-		FeedforwardNeuralNetwork network = new FeedforwardNeuralNetwork(
+		FeedforwardNetwork network = new FeedforwardNetwork(
 				new int[] {784, 30, 10},
 				Activation.sigmoid(),
 				Initialization.randomUniform()

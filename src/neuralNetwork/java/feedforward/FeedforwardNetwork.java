@@ -6,12 +6,12 @@ import neuralNetwork.java.*;
 import neuralNetwork.java.functions.*;
 import neuralNetwork.java.training.*;
 
-public class FeedforwardNeuralNetwork {
+public class FeedforwardNetwork {
 	protected Layer[] layers;
 	private Connection[] weights;
 	private Activation activation;
 	
-	public FeedforwardNeuralNetwork(
+	public FeedforwardNetwork(
 			int[] layers, 
 			Activation a, 
 			Initialization i) 
@@ -21,7 +21,7 @@ public class FeedforwardNeuralNetwork {
 		this.activation = a;
 		initialize(i);
 	}
-	public FeedforwardNeuralNetwork(
+	public FeedforwardNetwork(
 			Layer[] layers,
 			Activation a,
 			Initialization i)
