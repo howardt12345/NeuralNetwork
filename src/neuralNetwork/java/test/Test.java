@@ -16,7 +16,7 @@ public class Test {
 		float[][] in = new float[][]{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
 				target = new float[][] {{0}, {1}, {1}, {0}};
 		FeedforwardNetwork network = new FeedforwardNetwork(
-				new ConnectedLayer[] {new ConnectedLayer(2), new ConnectedLayer(5), new ConnectedLayer(1)}, 
+				new int[] {2, 5, 1}, 
 				Activation.sigmoid(), 
 				Initialization.randomUniform() 
 				);
