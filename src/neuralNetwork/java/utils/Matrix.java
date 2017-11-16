@@ -129,6 +129,12 @@ public class Matrix {
 	        }
 	    }
 	}
+	public Matrix (int length)
+	{
+		this.rows = length;
+		this.columns = 1;
+		this.matrix = new float[length];
+	}
 	public Matrix (int rows, int columns, float[] matrix)
 	{
 		assert(rows*columns == matrix.length) : rows + " * " + columns + " != " + matrix.length;
@@ -155,6 +161,16 @@ public class Matrix {
 		{
 			for (int b = 0; b < m.columns(); b++) 
 				m.set (a == b ? values[i++] : 0, a, b);
+		}
+		return m;
+	}
+	public static Matrix ofValue(float value, int rows, int columns)
+	{
+		Matrix m = new Matrix (rows, columns);
+		for (int a = 0; a < m.rows(); a++) 
+		{
+			for (int b = 0; b < m.columns(); b++) 
+				m.set (value, a, b);
 		}
 		return m;
 	}
@@ -223,6 +239,16 @@ public class Matrix {
 		Random r = new Random(seed);
 		IntStream.range(0, matrix.length).forEach(a -> matrix[a] = (float) r.nextFloat()-0.5f);
 	}
+	public float sum()
+	{
+		return Utils.sum(matrix);
+	}
+	public static Matrix exps(Matrix m1)
+	{
+		Matrix m = new Matrix(m1.rows, m1.columns);
+		m.matrix = Utils.exps(m1.matrix);
+		return m;
+	}
 	public static Matrix add(Matrix m1, Matrix m2)
 	{
 		assert(m1.rows == m2.rows && m1.columns == m2.columns)
@@ -254,7 +280,7 @@ public class Matrix {
 		}
 		return m;
 	}
-	public static Matrix scalarMultiply(Matrix m1, float scalar)
+	public static Matrix multiply(Matrix m1, float scalar)
 	{
 		Matrix m = new Matrix(m1.rows, m1.columns);
 		for(int a = 0; a < m.matrix.length; a++)
@@ -377,7 +403,7 @@ public class Matrix {
 		{
 			for(int b = 0; b < m1.columns; b++)
 			{
-				addTo(Matrix.scalarMultiply(m2, m1.get(a, b)), m, a*m1.rows, b*m1.columns);
+				addTo(Matrix.multiply(m2, m1.get(a, b)), m, a*m1.rows, b*m1.columns);
 			}
 		}
 		return m;
@@ -493,6 +519,10 @@ public class Matrix {
 	{
 		return matrix[row*columns + column];
 	}
+	public float get(int index)
+	{
+		return matrix[index];
+	}
 	/** Sets the Matrix at the provided index.
 	 * @param value the value to set.
 	 * @param row the row index.
@@ -501,6 +531,10 @@ public class Matrix {
 	public void set (float value, int row, int column) 
 	{
 		matrix[row*columns + column] = value;
+	}
+	public void set(float value, int index)
+	{
+		matrix[index] = value;
 	}
 	/** Returns the number of rows in the Matrix..*/
 	public int rows () 
@@ -511,6 +545,10 @@ public class Matrix {
 	public int columns () 
 	{
 		return columns;
+	}
+	public int length()
+	{
+		return matrix.length;
 	}
 	public float[] matrix()
 	{

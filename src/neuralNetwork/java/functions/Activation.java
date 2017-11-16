@@ -6,8 +6,8 @@ import neuralNetwork.java.utils.*;
 
 public abstract class Activation {
 	private Activation() {}
-	public abstract float[] f(float[] x);
-	public abstract float[] der(float[] x);
+	public abstract Matrix f(Matrix x);
+	public abstract Matrix der(Matrix x);
 	/** <p>The Identity activation function, given by f(x) = x.</p>
 	 * <p>The derivative of this function is f'(x) = 1.</p>
 	 */
@@ -15,12 +15,12 @@ public abstract class Activation {
 	{
 		return new Activation() {
 			@Override
-			public float[] f(float[] x) {
+			public Matrix f(Matrix x) {
 				return x;
 			}
 			@Override
-			public float[] der(float[] x) {
-				return Utils.arrayof(1, x.length);
+			public Matrix der(Matrix x) {
+				return Matrix.ofValue(1, x.rows(), x.columns());
 			}
 		};
 	}
@@ -31,17 +31,17 @@ public abstract class Activation {
 	{
 		return new Activation() {
 			@Override
-			public float[] f(float[] x) {
-				float[] A = new float[x.length];
-				IntStream.range(0, x.length).forEach(
-						a -> A[a] = x[a] < 0 ? 0 : 1);
+			public Matrix f(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns());
+				IntStream.range(0, x.length()).forEach(
+						a -> A.set(x.get(a) < 0 ? 0 : 1, a));
 				return A;
 			}
 			@Override
-			public float[] der(float[] x) {
-				float[] A = new float[x.length];
-				IntStream.range(0, x.length).forEach(
-						a -> A[a] = x[a] != 0 ? 0 : null);
+			public Matrix der(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns());
+				IntStream.range(0, x.length()).forEach(
+						a -> A.set(x.get(a) != 0 ? 0 : null, a));
 				return A;
 			}
 		};
@@ -53,17 +53,17 @@ public abstract class Activation {
 	{
 		return new Activation() {
 			@Override
-			public float[] f(float[] x) {
-				float[] A = new float[x.length];
-				IntStream.range(0, x.length).forEach(
-						a -> A[a] = Utils.sigmoid(x[a]));
+			public Matrix f(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns());
+				IntStream.range(0, x.length()).forEach(
+						a -> A.set(Utils.sigmoid(x.get(a)), a));
 				return A;			
 			}
 			@Override
-			public float[] der(float[] x) {
-				float[] A = new float[x.length], s = f(x);
-				IntStream.range(0, x.length).forEach(
-						a -> A[a] = Utils.sigmoid(s[a])*(1-Utils.sigmoid(s[a])));
+			public Matrix der(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns()), s = f(x);
+				IntStream.range(0, x.length()).forEach(
+						a -> A.set(s.get(a)*(1-s.get(a)), a));
 				return A;
 			}
 		};
@@ -75,14 +75,14 @@ public abstract class Activation {
 	{
 		return new Activation() {
 			@Override
-			public float[] f(float[] x) {
-				float[] A = new float[x.length];
-				IntStream.range(0, x.length).forEach(
-						a -> A[a] =  Math.max(0, x[a]));
+			public Matrix f(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns());
+				IntStream.range(0, x.length()).forEach(
+						a -> A.set(x.get(a) < 0 ? 0 : x.get(a), a));
 				return A;
 			}
 			@Override
-			public float[] der(float[] x) {
+			public Matrix der(Matrix x) {
 				return binaryStep().der(x);
 			}
 		};
@@ -94,17 +94,17 @@ public abstract class Activation {
 	{
 		return new Activation() {
 			@Override
-			public float[] f(float[] x) {
-				float[] A = new float[x.length];
-				IntStream.range(0, x.length).forEach(
-						a -> A[a] = x[a] < 0 ? 0.01f*x[a] : x[a]);
+			public Matrix f(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns());
+				IntStream.range(0, x.length()).forEach(
+						a -> A.set(x.get(a) < 0 ? 0.01f*x.get(a) : x.get(a), a));
 				return A;			
 			}
 			@Override
-			public float[] der(float[] x) {
-				float[] A = new float[x.length];
-				IntStream.range(0, x.length).forEach(
-						a -> A[a] = x[a] < 0 ? 0.01f : 1);
+			public Matrix der(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns());
+				IntStream.range(0, x.length()).forEach(
+						a -> A.set(x.get(a) < 0 ? 0.01f : 1, a));
 				return A;	
 			}
 		};
@@ -117,17 +117,17 @@ public abstract class Activation {
 	{
 		return new Activation() {
 			@Override
-			public float[] f(float[] x) {
-				float[] A = new float[x.length];
-				IntStream.range(0, x.length).forEach(
-						i -> A[i] = x[i] < 0 ? a*x[i] : x[i]);
+			public Matrix f(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns());
+				IntStream.range(0, x.length()).forEach(
+						i -> A.set(x.get(i) < 0 ? a*x.get(i) : x.get(i), i));
 				return A;			
 			}
 			@Override
-			public float[] der(float[] x) {
-				float[] A = new float[x.length];
-				IntStream.range(0, x.length).forEach(
-						i -> A[i] = x[i] < 0 ? a : 1);
+			public Matrix der(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns());
+				IntStream.range(0, x.length()).forEach(
+						i -> A.set(x.get(i) < 0 ? a : 1, i));
 				return A;	
 			}
 		};
@@ -139,17 +139,17 @@ public abstract class Activation {
 	{
 		return new Activation() {
 			@Override
-			public float[] f(float[] x) {
-				float[] A = new float[x.length];
-				IntStream.range(0, x.length).forEach(
-						a -> A[a] = Utils.tanH(x[a]));
+			public Matrix f(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns());
+				IntStream.range(0, x.length()).forEach(
+						a -> A.set(Utils.tanH(x.get(a)), a));
 				return A;			
 			}
 			@Override
-			public float[] der(float[] x) {
-				float[] A = new float[x.length];
-				IntStream.range(0, x.length).forEach(
-						a -> A[a] = (float) (1-Math.pow(Utils.tanH(x[a]), 2)));
+			public Matrix der(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns());
+				IntStream.range(0, x.length()).forEach(
+						a -> A.set((float) (1-Math.pow(Utils.tanH(x.get(a)), 2)), a));
 				return A;	
 			}
 		};
@@ -161,19 +161,21 @@ public abstract class Activation {
 	{
 		return new Activation () {
 			@Override
-			public float[] f(float[] x) {
-				float[] exp = Utils.exps(x), A = new float[x.length];
-				float sum = Utils.sum(exp);
-				for(int a = 0; a < x.length; a++)
-					A[a] = exp[a]/sum;
+			public Matrix f(Matrix x) {
+				Matrix exp = Matrix.exps(x), A = new Matrix(x.rows(), x.columns());
+				float sum = exp.sum();
+				for(int a = 0; a < x.length(); a++)
+					A.set(exp.get(a)/sum, a);
 				return A;
 			}
 			@Override
-			public float[] der(float[] x) {
-				float[] f = f(x), A = new float[x.length];
-				for(int i = 0; i < x.length; i++)
-					for(int j = 0; j < x.length; j++)
-						A[i] = f[i]*((i == j ? 1 : 0) - f[j]);
+			public Matrix der(Matrix x) {
+				Matrix f = f(x), 
+						A = new Matrix(x.rows(), x.columns()), 
+						k = Matrix.identity(x.rows(), x.columns());
+				for(int i = 0; i < x.length(); i++)
+					for(int j = 0; j < x.length(); j++)
+						A.set(f.get(i)*k.get(i, j) - f.get(j), i);
 				return A;
 			}
 		};
@@ -184,13 +186,13 @@ public abstract class Activation {
 	public static Activation softPlus()
 	{
 		return new Activation () {
-			public float[] f(float[] x) {
-				float[] A = new float[x.length];
-				IntStream.range(0, x.length).forEach(
-						a -> A[a] = (float) Math.log(1+Math.exp(x[a])));
+			public Matrix f(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns());
+				IntStream.range(0, x.length()).forEach(
+						a -> A.set((float) Math.log(1+Utils.exp(x.get(a))), a));
 				return A;
 			}
-			public float[] der(float[] x) {
+			public Matrix der(Matrix x) {
 				return sigmoid().f(x);
 			}
 		};

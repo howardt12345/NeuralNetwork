@@ -5,12 +5,10 @@ import java.util.stream.*;
 import neuralNetwork.java.utils.*;
 import neuralNetwork.java.layer.*;
 import neuralNetwork.java.functions.*;
-import neuralNetwork.java.layer.Layer;
+import neuralNetwork.java.layer.ConnectedLayer;
 import neuralNetwork.java.training.*;
 
 public class FeedforwardNetwork extends NeuralNetwork {
-	protected Layer[] layers;
-	private Connection[] weights;
 	private Activation activation;
 	
 	public FeedforwardNetwork(
@@ -18,13 +16,13 @@ public class FeedforwardNetwork extends NeuralNetwork {
 			Activation a, 
 			Initialization i) 
 	{
-		this.layers = new Layer[layers.length];
-		IntStream.range(0, layers()).forEach(n -> this.layers[n] = new Layer(layers[n]));
+		this.layers = new ConnectedLayer[layers.length];
+		IntStream.range(0, layers()).forEach(n -> this.layers[n] = new ConnectedLayer(layers[n]));
 		this.activation = a;
 		initialize(i);
 	}
 	public FeedforwardNetwork(
-			Layer[] layers,
+			ConnectedLayer[] layers,
 			Activation a,
 			Initialization i)
 	{
@@ -43,31 +41,24 @@ public class FeedforwardNetwork extends NeuralNetwork {
 			weights[a] = new Connection(layers[a], layers[a+1], i);
 		}
 	}
-	public float[] feedForward(float[] in)
+	public Matrix feedForward(Matrix in)
 	{
 		layers[0].setValues(in);
-		for(int a = 0; a < weights.length; a++)
-		{
-			weights[a].compute();
-		}
-		return layers[layers()-1].outputs();
+		return calculateOutputs();
 	}
-	public float[] feedForward(int[] in)
+	public float[] feedForward(float[] in)
 	{
-		layers[0].setValues(Utils.toFloat(in));
-		for(int a = 0; a < weights.length; a++)
-		{
-			weights[a].compute();
-		}
-		return layers[layers()-1].outputs();
+		layers[0].setValues(new Matrix(in));
+		return calculateOutputs().matrix();
 	}
-	public float[] feedForward(double[] in)
+	public Matrix calculateOutputs()
 	{
-		layers[0].setValues(Utils.toFloat(in));
-		for(int a = 0; a < weights.length; a++)
+/*		for(int a = 0; a < weights.length; a++)
 		{
 			weights[a].compute();
-		}
+		}*/
+		weights[0].compute();
+		weights[1].compute();
 		return layers[layers()-1].outputs();
 	}
 	public float train(int epochs, 
@@ -83,7 +74,7 @@ public class FeedforwardNetwork extends NeuralNetwork {
 	{
 		return layers[index];
 	}
-	public void set(Layer l, int index)
+	public void set(ConnectedLayer l, int index)
 	{
 		layers[index] = l;
 	}
@@ -113,13 +104,13 @@ public class FeedforwardNetwork extends NeuralNetwork {
 		System.out.println();
 		IntStream.range(0, layers()).forEach(a -> 
 		{
-			System.out.println("Layer " + a + ":");
+			System.out.println("ConnectedLayer " + a + ":");
 			System.out.println("Values:");
-			Utils.print(get(a).values());
+			get(a).values().print();
 			System.out.println("Outputs:");
-			Utils.print(get(a).outputs());
+			get(a).outputs().print();
 			System.out.println("Biases:");
-			Utils.print(get(a).biases());
+			get(a).bias().print();
 			System.out.println();
 		});
 		IntStream.range(0, layers()-1).forEach(a -> 

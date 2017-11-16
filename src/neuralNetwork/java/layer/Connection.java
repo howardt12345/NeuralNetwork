@@ -2,7 +2,7 @@ package neuralNetwork.java.layer;
 
 import neuralNetwork.java.utils.*;
 import neuralNetwork.java.functions.Initialization;
-import neuralNetwork.java.layer.Layer;
+import neuralNetwork.java.layer.ConnectedLayer;
 
 public class Connection {
 	private Matrix weights;
@@ -23,13 +23,13 @@ public class Connection {
 	}
 	public void compute()
 	{
-		output.setLayer(Matrix.multiply(new Matrix(input.outputs()).transpose(),
-				getWeights()).matrix());
-		output.updateOutputs();
+		output.setLayer(Matrix.multiply(input.outputs().transpose(),
+				getWeights()).transpose());
+		output.calculateOutputs();
 	}
 	public void adjustWeights(float eta, int length)
 	{		
-		setWeights(Matrix.subtract(getWeights(), Matrix.scalarMultiply(getDeltaWeights(), eta/length)));
+		setWeights(Matrix.subtract(getWeights(), Matrix.multiply(getDeltaWeights(), eta/length)));
 	}
 	public int size()
 	{

@@ -1,94 +1,71 @@
 package neuralNetwork.java.layer;
 
-import java.util.*;
-import neuralNetwork.java.utils.*;
 import neuralNetwork.java.functions.Activation;
+import neuralNetwork.java.utils.*;
 
-public class Layer {
-	private float[] layer;
-	protected float[] outputs;
-	private float[] bias;
-	private Activation activation;
-	
-	public Layer(int neurons)
+public abstract class Layer {
+	protected Matrix layer, outputs, bias, nebla_b;
+	protected Activation a;
+	public Layer(Matrix layer, Matrix outputs, Matrix bias)
 	{
-		this.setLayer(new float[neurons]);
-		this.outputs = new float[neurons];
-		this.setBias(new float[neurons]);
-		Arrays.fill(biases(), 0.1f);
+		this.layer = layer;
+		this.outputs = outputs;
+		this.bias = bias;
+		this.nebla_b = new Matrix(bias.rows(), bias.columns());
 	}
-	public Layer(int neurons, Activation a)
-	{
-		this.setLayer(new float[neurons]);
-		this.outputs = new float[neurons];
-		this.setBias(new float[neurons]);
-		Arrays.fill(biases(), 0.1f);
-		this.activation = a;
-	}
-	public Layer(float[] layer)
-	{
-		this.setLayer(layer);
-		this.outputs = new float[layer.length];
-		this.setBias(new float[layer.length]);
-		Arrays.fill(biases(), 0.1f);
-	}
-	public Layer(float[] layer, Activation a)
-	{
-		this.setLayer(layer);
-		this.outputs = new float[layer.length];
-		this.setBias(new float[layer.length]);
-		Arrays.fill(biases(), 0.1f);
-		this.activation = a;
-	}
-	public void updateOutputs()
-	{
-		outputs = getActivation().f(Utils.add(layer, biases()));
-	}
-	public void updateBiases(float[] nebla_b, float eta, float length)
-	{
-		setBias(Utils.subtract(biases(), Utils.multiply(nebla_b, eta/length)));
-	}
+	public abstract Matrix calculateOutputs();
 	public int size()
 	{
-		assert((outputs.length | biases().length) == layer.length);
-		return layer.length;
+		assert((outputs.length() | bias.length()) == layer.length());
+		return layer.length();
 	}
-	public float[] outputs()
+	public void setValues(Matrix values)
+	{
+		assert(values.columns() == this.layer.columns()) : values.columns() + " != " + this.layer.columns();
+		this.outputs = values;
+	}
+	public Matrix outputs()
 	{
 		return outputs;
 	}
-	public float[] values()
+	public Matrix values()
 	{
 		return layer;
 	}
-	public float[] derivatives()
+	public Matrix bias() 
 	{
-		return getActivation().der(layer);
+		return bias;
 	}
-	public void setValues(float[] values)
+	public Matrix nebla_b()
 	{
-		assert(values.length == this.layer.length) : values.length + " != " + this.layer.length;
-		this.outputs = values;
+		return nebla_b;
 	}
-	public void setActivation(Activation a)
+	public void setDeltaBias(Matrix nebla_b)
 	{
-		this.activation = a;
+		this.nebla_b = nebla_b;
 	}
-	public Activation getActivation()
+	public Matrix derivatives()
 	{
-		return activation;
+		return getActivation().der(outputs);
 	}
 	public float get(int index)
 	{
-		return layer[index];
+		return layer.get(index);
 	}
-	public float[] biases() {
-		return bias;
-	}
-	public void setBias(float[] bias) {
+	public void setBias(Matrix bias) 
+	{
 		this.bias = bias;
 	}
-	public void setLayer(float[] layer) {
+	public void setLayer(Matrix layer) 
+	{
 		this.layer = layer;
+	}
+	public Activation getActivation()
+	{
+		return a;
+	}
+	public void setActivation(Activation a)
+	{
+		this.a = a;
 	}
 }

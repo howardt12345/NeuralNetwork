@@ -1,9 +1,9 @@
 package neuralNetwork.java.networks;
 
-import neuralNetwork.java.layer.Connection;
-import neuralNetwork.java.layer.Layer;
+import neuralNetwork.java.layer.*;
+import neuralNetwork.java.utils.Matrix;
 
-public class NeuralNetwork {
+public abstract class NeuralNetwork {
 	protected Layer[] layers;
 	protected Connection[] weights;
 }

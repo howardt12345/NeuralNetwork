@@ -4,6 +4,7 @@ import java.util.*;
 
 import neuralNetwork.java.*;
 import neuralNetwork.java.functions.*;
+import neuralNetwork.java.layer.ConnectedLayer;
 import neuralNetwork.java.networks.FeedforwardNetwork;
 import neuralNetwork.java.training.Dataset;
 
@@ -15,7 +16,7 @@ public class Test {
 		float[][] in = new float[][]{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
 				target = new float[][] {{0}, {1}, {1}, {0}};
 		FeedforwardNetwork network = new FeedforwardNetwork(
-				new int[] {2, 5, 1}, 
+				new ConnectedLayer[] {new ConnectedLayer(2), new ConnectedLayer(5), new ConnectedLayer(1)}, 
 				Activation.sigmoid(), 
 				Initialization.randomUniform() 
 				);
@@ -32,8 +33,8 @@ public class Test {
 			System.out.println();
 			for(int b = 0; b < out.length; b++)
 				System.out.print("Expected: " + target[a][b] + " ");
-			for(int b = 0; b < out.length; b++)
-				System.out.print("Error: " + Cost.mst().f(out, target[a]) + " ");
+/*			for(int b = 0; b < out.length; b++)
+				System.out.print("Error: " + Cost.mst().f(out, target[a]) + " ");*/
 			System.out.println('\n');
 		}
 		network.print();
