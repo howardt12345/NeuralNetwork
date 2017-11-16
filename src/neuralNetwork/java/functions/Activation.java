@@ -109,25 +109,25 @@ public abstract class Activation {
 			}
 		};
 	}
-	/** <p>The Parametric ReLU activation function, given by f(x) = { ax for x < 0, x for x >= 0.</p>
-	 * <p>The derivative of this function is f'(x) = { a for x < 0, 1 for x >= 0.</p>
-	 * @param a the coefficient of leakage.
+	/** <p>The Parametric ReLU activation function, given by f(x) = { αx for x < 0, x for x >= 0.</p>
+	 * <p>The derivative of this function is f'(x) = { α for x < 0, 1 for x >= 0.</p>
+	 * @param α the coefficient of leakage.
 	 */
-	public static Activation pReLu(float a)
+	public static Activation pReLu(float α)
 	{
 		return new Activation() {
 			@Override
 			public Matrix f(Matrix x) {
 				Matrix A = new Matrix(x.rows(), x.columns());
 				IntStream.range(0, x.length()).forEach(
-						i -> A.set(x.get(i) < 0 ? a*x.get(i) : x.get(i), i));
+						i -> A.set(x.get(i) < 0 ? α*x.get(i) : x.get(i), i));
 				return A;			
 			}
 			@Override
 			public Matrix der(Matrix x) {
 				Matrix A = new Matrix(x.rows(), x.columns());
 				IntStream.range(0, x.length()).forEach(
-						i -> A.set(x.get(i) < 0 ? a : 1, i));
+						i -> A.set(x.get(i) < 0 ? α : 1, i));
 				return A;	
 			}
 		};
@@ -172,16 +172,16 @@ public abstract class Activation {
 			public Matrix der(Matrix x) {
 				Matrix f = f(x), 
 						A = new Matrix(x.rows(), x.columns()), 
-						k = Matrix.identity(x.rows(), x.columns());
+						δ = Matrix.identity(x.rows(), x.columns());
 				for(int i = 0; i < x.length(); i++)
 					for(int j = 0; j < x.length(); j++)
-						A.set(f.get(i)*k.get(i, j) - f.get(j), i);
+						A.set(f.get(i)*δ.get(i, j) - f.get(j), i);
 				return A;
 			}
 		};
 	}
 	/** <p>The softplus ativation function, given by f(x) = ln(1+exp(x)).</p>
-	 * <p>The derivative of this function is 1/(1+exp(-x)).</p>
+	 * <p>The derivative of this function is f'(x) = 1/(1+exp(-x)).</p>
 	 */
 	public static Activation softPlus()
 	{
@@ -194,6 +194,29 @@ public abstract class Activation {
 			}
 			public Matrix der(Matrix x) {
 				return sigmoid().f(x);
+			}
+		};
+	}
+	/** <p>The Swish activation function, given by f(x) = xσ(ax), 
+	 * where σ(z) = 1/(1+exp(-x)) and a is either a constant or a trainable parameter.</p>
+	 * <p>The derivative of this function is f'(x) = af(x) + σ(ax)(1 − af(x)).</p>
+	 */
+	public static Activation swish(float β)
+	{
+		return new Activation() {
+			@Override
+			public Matrix f(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns());
+				IntStream.range(0, x.length()).forEach(
+						i -> A.set(x.get(i)*Utils.sigmoid(β*x.get(i)), i));
+				return A;			
+			}
+			@Override
+			public Matrix der(Matrix x) {
+				Matrix A = new Matrix(x.rows(), x.columns()), s = f(x);
+				IntStream.range(0, x.length()).forEach(
+						i -> A.set(β*s.get(i)+Utils.sigmoid(β*x.get(i))*(1-β*s.get(i)), i));
+				return A;
 			}
 		};
 	}
