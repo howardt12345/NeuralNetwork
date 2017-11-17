@@ -3,7 +3,7 @@ package neuralNetwork.java.training;
 import java.util.*;
 
 public class Dataset {
-	Map<float[], float[]> data = new HashMap<float[], float[]>();
+	private Map<float[], float[]> data = new HashMap<float[], float[]>();
 	private int size;
 	public Dataset(float[][] in, float[][] target)
 	{
