@@ -18,7 +18,7 @@ public class Test {
 		FeedforwardNetwork network = new FeedforwardNetwork(
 				new int[] {2, 5, 1}, 
 				Activation.sigmoid(), 
-				Initialization.randomUniform() 
+				Initialization.randomUniform()
 				);
 		long start = System.nanoTime(), end;
 		network.train(10000, new Dataset(in, target), 0.2f, Cost.mst());
