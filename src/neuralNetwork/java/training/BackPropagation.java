@@ -41,7 +41,7 @@ public class BackPropagation extends Training {
 		{
 			nebla_b[a] = new float[network.get(a+1).size()];
 		}
-/*		training.getData().parallelStream().forEach(x -> {
+		training.getData().parallelStream().forEach(x -> {
 			synchronized(errors)
 			{
 				Matrix out = network.feedForward(new Matrix(x));
@@ -76,41 +76,7 @@ public class BackPropagation extends Training {
 				}
 				errors.add(cost.f(out, new Matrix(training.get(x))));
 			}
-		});*/
-		for(float[] x : training.getData())
-		{
-			Matrix out = network.feedForward(new Matrix(x));
-			Matrix delta = cost.delta(out, 
-					new Matrix(training.get(x)), 
-						network.get(n).derivatives()
-					);
-			network.get(n).setDeltaBias(Matrix.add(network.get(n).nebla_b(), delta));
-			network.getWeights()[n-1].setDeltaWeights(Matrix.add(
-					network.getWeights()[n-1].getDeltaWeights(), 
-					Matrix.multiply(
-							delta, 
-							network.get(n-1).outputs().transpose()
-							).transpose()
-					));
-			for(int l = 2; l <= n; l++)
-			{
-				delta = Matrix.haramardProduct(
-						Matrix.multiply(
-								network.getWeights()[n-l+1].getWeights(), 
-								delta
-								), 
-						network.get(n-l+1).outputs());
-				network.get(n-l+1).setDeltaBias(Matrix.add(network.get(n-l+1).nebla_b(), delta));;
-				network.getWeights()[n-l].setDeltaWeights(Matrix.add(
-						network.getWeights()[n-l].getDeltaWeights(), 
-						Matrix.multiply(
-								delta, 
-								network.get(n-l).outputs().transpose()
-								).transpose()
-						));
-			}
-			errors.add(cost.f(out, new Matrix(training.get(x))));
-		}
+		});
 		for(int a = 0; a < n; a++)
 		{
 			gd.update(network.getWeights()[a], eta, size);
