@@ -53,12 +53,10 @@ public class FeedforwardNetwork extends NeuralNetwork {
 	}
 	public Matrix calculateOutputs()
 	{
-/*		for(int a = 0; a < weights.length; a++)
+		for(int a = 0; a < weights.length; a++)
 		{
 			weights[a].compute();
-		}*/
-		weights[0].compute();
-		weights[1].compute();
+		}
 		return layers[layers()-1].outputs();
 	}
 	public float train(int epochs, 
@@ -100,11 +98,10 @@ public class FeedforwardNetwork extends NeuralNetwork {
 	}
 	public void print()
 	{
-		System.out.println("Number of layers: " + layers());
-		System.out.println();
+		System.out.println("Number of layers: " + layers() + '\n');
 		IntStream.range(0, layers()).forEach(a -> 
 		{
-			System.out.println("ConnectedLayer " + a + ":");
+			System.out.println(get(a).getClass().getSimpleName() + " " + a + ":");
 			System.out.println("Values:");
 			get(a).values().print();
 			System.out.println("Outputs:");
