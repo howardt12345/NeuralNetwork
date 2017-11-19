@@ -1,8 +1,9 @@
-package neuralNetwork.java.layer;
+package Java.neuralNetwork.layer;
 
 import java.util.*;
-import neuralNetwork.java.utils.*;
-import neuralNetwork.java.functions.Activation;
+
+import Java.neuralNetwork.functions.Activation;
+import Java.neuralNetwork.utils.*;
 
 public class ConnectedLayer extends Layer {
 	private Activation activation;

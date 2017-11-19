@@ -1,12 +1,13 @@
-package neuralNetwork.java.networks.supervised;
+package Java.neuralNetwork.networks.supervised;
 
 import java.util.*;
-import java.io.*;
 
-import neuralNetwork.java.functions.Cost;
-import neuralNetwork.java.layer.*;
-import neuralNetwork.java.training.Dataset;
-import neuralNetwork.java.utils.Matrix;
+import Java.neuralNetwork.functions.Cost;
+import Java.neuralNetwork.layer.*;
+import Java.neuralNetwork.training.Dataset;
+import Java.neuralNetwork.utils.Matrix;
+
+import java.io.*;
 
 public abstract class NeuralNetwork {
 	protected Layer[] layers;

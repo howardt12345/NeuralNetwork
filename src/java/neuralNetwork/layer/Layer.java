@@ -1,7 +1,7 @@
-package neuralNetwork.java.layer;
+package Java.neuralNetwork.layer;
 
-import neuralNetwork.java.functions.Activation;
-import neuralNetwork.java.utils.*;
+import Java.neuralNetwork.functions.Activation;
+import Java.neuralNetwork.utils.*;
 
 public abstract class Layer {
 	protected Matrix layer, outputs, bias, nebla_b;

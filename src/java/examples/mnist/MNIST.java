@@ -1,11 +1,11 @@
-package neuralNetwork.java.examples.mnist;
+package Java.examples.mnist;
 
 import java.util.*;
 
-import neuralNetwork.java.utils.*;
-import neuralNetwork.java.functions.*;
-import neuralNetwork.java.networks.supervised.FeedforwardNetwork;
-import neuralNetwork.java.training.Dataset;
+import Java.neuralNetwork.functions.*;
+import Java.neuralNetwork.networks.supervised.FeedforwardNetwork;
+import Java.neuralNetwork.training.Dataset;
+import Java.neuralNetwork.utils.*;
 
 public class MNIST {
 	public static void main(String[] args)
@@ -20,12 +20,12 @@ public class MNIST {
 		assert(28 == trainImages.get(0)[0].length);
 		System.out.println("Done reading data");
 		FeedforwardNetwork network = new FeedforwardNetwork(
-				new int[] {784, 100, 30, 10},
+				new int[] {784, 30, 10},
 				Activation.sigmoid(),
 				Initialization.randomUniform()
 				);
 		network.train(30, 
-				new Dataset(configureIn(trainImages, 784), configureOut(trainLabels, 10)), 
+				new Dataset(configureIn(testImages, 784), configureOut(testLabels, 10)), 
 				new Dataset(configureIn(testImages, 784), configureOut(testLabels, 10)),
 				3, 
 				Cost.mst());

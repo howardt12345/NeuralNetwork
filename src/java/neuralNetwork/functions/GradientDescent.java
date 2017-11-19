@@ -1,8 +1,7 @@
-package neuralNetwork.java.functions;
+package Java.neuralNetwork.functions;
 
-import neuralNetwork.java.layer.Connection;
-import neuralNetwork.java.layer.*;
-import neuralNetwork.java.utils.*;
+import Java.neuralNetwork.layer.*;
+import Java.neuralNetwork.utils.*;
 
 public abstract class GradientDescent {
 	public abstract void update(Connection c, float eta, int size);

@@ -1,4 +1,4 @@
-package neuralNetwork.java.training;
+package Java.neuralNetwork.training;
 
 public abstract class Training {
 	protected float[] trainingLoss, testLoss;

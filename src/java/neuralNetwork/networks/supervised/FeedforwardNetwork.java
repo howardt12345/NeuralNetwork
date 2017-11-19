@@ -1,13 +1,12 @@
-package neuralNetwork.java.networks.supervised;
+package Java.neuralNetwork.networks.supervised;
 
 import java.util.*;
 import java.util.stream.*;
 
-import neuralNetwork.java.utils.*;
-import neuralNetwork.java.layer.*;
-import neuralNetwork.java.functions.*;
-import neuralNetwork.java.layer.ConnectedLayer;
-import neuralNetwork.java.training.*;
+import Java.neuralNetwork.functions.*;
+import Java.neuralNetwork.layer.*;
+import Java.neuralNetwork.training.*;
+import Java.neuralNetwork.utils.*;
 
 public class FeedforwardNetwork extends NeuralNetwork {
 	private Activation activation;

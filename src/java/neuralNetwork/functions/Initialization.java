@@ -1,8 +1,8 @@
-package neuralNetwork.java.functions;
+package Java.neuralNetwork.functions;
 
 import java.util.stream.*;
 
-import neuralNetwork.java.layer.*;
+import Java.neuralNetwork.layer.*;
 
 public abstract class Initialization {
 	private Initialization() {}

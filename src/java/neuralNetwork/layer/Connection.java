@@ -1,8 +1,8 @@
-package neuralNetwork.java.layer;
+package Java.neuralNetwork.layer;
 
-import neuralNetwork.java.utils.*;
-import neuralNetwork.java.functions.Initialization;
-import neuralNetwork.java.layer.ConnectedLayer;
+import Java.neuralNetwork.functions.Initialization;
+import Java.neuralNetwork.layer.ConnectedLayer;
+import Java.neuralNetwork.utils.*;
 
 public class Connection {
 	private Matrix weights;
