@@ -1,27 +1,25 @@
 package neuralNetwork.java.training;
 
-public class Training {
-	private float error = 1;
-	protected Dataset training, test;
+public abstract class Training {
+	protected float[] trainingLoss, testLoss;
+	protected Dataset trainingData = null, testData = null;
 	
-	protected Training(Dataset data)
+	protected Training(Dataset training, Dataset test)
 	{
-		this.training = data;
+		this.trainingData = training;
+		this.testData = test;
 	}
-	public void train()
+	public abstract void train(int epochs);
+	public Dataset getTrainingData()
 	{
-		
+		return trainingData;
 	}
-	public Dataset getData()
+	public float[] getTrainingLoss()
 	{
-		return training;
+		return trainingLoss;
 	}
-	public float getError()
+	public float[] getTestLoss()
 	{
-		return error;
-	}
-	protected void setError(float x)
-	{
-		error = x;
+		return testLoss;
 	}
 }

@@ -4,7 +4,7 @@ import java.util.*;
 
 import neuralNetwork.java.utils.*;
 import neuralNetwork.java.functions.*;
-import neuralNetwork.java.networks.FeedforwardNetwork;
+import neuralNetwork.java.networks.supervised.FeedforwardNetwork;
 
 public class BackPropagation extends Training {
 	private FeedforwardNetwork network;
@@ -14,39 +14,40 @@ public class BackPropagation extends Training {
 	
 	public BackPropagation(
 			FeedforwardNetwork n, 
-			Dataset data,
+			Dataset trainingData, Dataset testData,
 			float eta,
 			Cost cost)
 	{
-		super(data);
+		super(trainingData, testData);
 		this.network = n;
 		this.eta = eta;
 		this.cost = cost;
 	}
-	public float train(int epochs)
+	public void train(int epochs)
 	{
+		trainingLoss = new float[epochs];
+		if (testData != null) testLoss = new float[epochs];
 		int epoch = 1;
 		do 
 		{
-			setError(iterate());
+			iterate(epoch);
+			if(Float.compare(trainingLoss[epoch-1], 0.0f) <= 0) 
+				break;
 		} while(epoch++ < epochs);
-		return getError();
+		network.setTrainingLoss(trainingLoss);
+		if (testData != null) network.setTestLoss(testLoss);
+		network.setIterations(epoch);
 	}
-	public float iterate()
+	public void iterate(int epoch)
 	{
-		List<Float> errors = new ArrayList<Float>();
-		int n = network.getWeights().length, size = training.size();
-		float[][] nebla_b = new float[n][];
-		for(int a = 0; a < nebla_b.length; a++)
-		{
-			nebla_b[a] = new float[network.get(a+1).size()];
-		}
-		training.getData().parallelStream().forEach(x -> {
-			synchronized(errors)
+		List<Float> loss = new ArrayList<Float>();
+		int n = network.getWeights().length, size = trainingData.size();
+		trainingData.getData().parallelStream().forEach(x -> {
+			synchronized(loss)
 			{
 				Matrix out = network.feedForward(new Matrix(x));
 				Matrix delta = cost.delta(out, 
-						new Matrix(training.get(x)), 
+						new Matrix(trainingData.get(x)), 
 							network.get(n).derivatives()
 						);
 				network.get(n).setDeltaBias(Matrix.add(network.get(n).nebla_b(), delta));;
@@ -74,16 +75,26 @@ public class BackPropagation extends Training {
 									).transpose()
 							));
 				}
-				errors.add(cost.f(out, new Matrix(training.get(x))));
+				loss.add(cost.f(out, new Matrix(trainingData.get(x))));
 			}
 		});
 		for(int a = 0; a < n; a++)
 		{
 			gd.update(network.getWeights()[a], eta, size);
 			gd.update(network.get(a+1), eta, size);
-			//network.getWeights()[a].adjustWeights(eta, size);
-			//network.get(a+1).updateBiases(nebla_b[a], eta, size);
 		}
-		return Utils.sum(errors);
+		trainingLoss[epoch-1] = Utils.sum(loss);
+		if(testData != null)
+		{
+			loss.clear();
+			testData.getData().stream().forEach(x -> {
+				synchronized(loss)
+				{
+					Matrix out = network.feedForward(new Matrix(x));
+					loss.add(cost.f(out, new Matrix(testData.get(x))));
+				}
+			});
+			testLoss[epoch-1] = Utils.sum(loss);
+		}
 	}
 }
