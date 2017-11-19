@@ -44,6 +44,7 @@ public class Dataset {
 				parsedTarget[a] = Float.parseFloat(rawTarget[a]);
 			data.put(parsedIn, parsedTarget);
 		}
+		in.close();
 	}
 	public List<float[]> getData()
 	{
