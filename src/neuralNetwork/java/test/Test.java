@@ -5,8 +5,9 @@ import java.util.*;
 import neuralNetwork.java.*;
 import neuralNetwork.java.functions.*;
 import neuralNetwork.java.layer.ConnectedLayer;
-import neuralNetwork.java.networks.FeedforwardNetwork;
+import neuralNetwork.java.networks.supervised.FeedforwardNetwork;
 import neuralNetwork.java.training.Dataset;
+import neuralNetwork.java.utils.Utils;
 
 import java.io.*;
 
@@ -21,7 +22,7 @@ public class Test {
 				Initialization.randomUniform()
 				);
 		long start = System.nanoTime(), end;
-		network.train(10000, new Dataset(in, target), 0.2f, Cost.mst());
+		network.train(10000, new Dataset(in, target), null, 0.1f, Cost.mst());
 		end = System.nanoTime();
 		System.out.println(end-start);
 		for(int a = 0; a < in.length; a++)
@@ -37,7 +38,14 @@ public class Test {
 				System.out.print("Error: " + Cost.mst().f(out, target[a]) + " ");*/
 			System.out.println('\n');
 		}
-		network.print();
+		Utils.print(network.getTrainingLoss());
+		System.out.println();
+		Utils.print(network.getTestLoss());
+		System.out.println(network.getIterations());
+		network.evaluate(new Dataset(in, target));
+		System.out.println(network.getAccuracy());
+		System.out.println(network.getLoss());
+		//network.print();
 	}
 	@SuppressWarnings("unused")
 	private static void setOutput(String filename)
