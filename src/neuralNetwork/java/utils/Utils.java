@@ -121,6 +121,13 @@ public class Utils {
 			tmp += x.get(a);
 		return tmp;
 	}
+	public static float sumOfIfEqual(Matrix x, Matrix y)
+	{
+		float tmp = 0;
+		for(int a = 0; a < x.length(); a++)
+			if(x.equals(y)) tmp++;
+		return tmp;
+	}
 	public static float[] toFloat(int[] x)
 	{
 		float[] tmp = new float[x.length];
@@ -192,5 +199,10 @@ public class Utils {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	public static void print(int[] out) 
+	{
+		for(int a = 0; a < out.length; a++)
+			System.out.println(a+": "+out[a]);		
 	}
 }
