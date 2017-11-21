@@ -21,15 +21,18 @@ public class MNIST {
 		System.out.println("Done reading data");
 		FeedforwardNetwork network = new FeedforwardNetwork(
 				new int[] {784, 30, 10},
-				Activation.sigmoid(),
-				Initialization.randomUniform()
+				Activation.reLU(),
+				Initialization.randomNormal()
 				);
 		network.train(30, 
-				new Dataset(configureIn(testImages, 784), configureOut(testLabels, 10)), 
+				new Dataset(configureIn(trainImages, 784), configureOut(trainLabels, 10)), 
 				new Dataset(configureIn(testImages, 784), configureOut(testLabels, 10)),
-				3, 
+				1, 
 				Cost.mst());
 		network.evaluate(new Dataset(configureIn(testImages, 784), configureOut(testLabels, 10)));
+		Utils.print(network.getTrainingLoss());
+		System.out.println();
+		Utils.print(network.getTestLoss());
 		System.out.println("Training iterations: " + network.getIterations());
 		System.out.println("Accuracy: " + network.getAccuracy());
 		System.out.println("Loss: " + network.getLoss());

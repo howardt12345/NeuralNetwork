@@ -1,3 +1,4 @@
+
 package Java.neuralNetwork.layer;
 
 import Java.neuralNetwork.functions.Initialization;

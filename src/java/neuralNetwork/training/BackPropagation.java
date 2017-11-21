@@ -30,6 +30,7 @@ public class BackPropagation extends Training {
 		int epoch = 1;
 		do 
 		{
+			System.out.println(epoch);
 			iterate(epoch);
 			if(Float.compare(trainingLoss[epoch-1], 0.0f) <= 0) 
 				break;
@@ -83,7 +84,7 @@ public class BackPropagation extends Training {
 			gd.update(network.getWeights()[a], eta, size);
 			gd.update(network.get(a+1), eta, size);
 		}
-		trainingLoss[epoch-1] = Utils.sum(loss);
+		trainingLoss[epoch-1] = Utils.sum(loss)/loss.size();
 		if(testData != null)
 		{
 			loss.clear();
@@ -94,7 +95,7 @@ public class BackPropagation extends Training {
 					loss.add(cost.f(out, new Matrix(testData.get(x))));
 				}
 			});
-			testLoss[epoch-1] = Utils.sum(loss);
+			testLoss[epoch-1] = Utils.sum(loss)/loss.size();
 		}
 	}
 }
