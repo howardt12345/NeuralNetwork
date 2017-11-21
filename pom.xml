@@ -23,11 +23,11 @@
     </repository>
 </repositories>
   <dependencies>
-  	<dependency>
-  		<groupId>com.aparapi</groupId>
-  		<artifactId>aparapi</artifactId>
-  		<version>1.4.1</version>
-  	</dependency>
+	<dependency>
+	    <groupId>com.aparapi</groupId>
+	    <artifactId>aparapi</artifactId>
+	    <version>1.4.1</version>
+	</dependency>
   	<dependency>
   		<groupId>org.bytedeco</groupId>
   		<artifactId>javacpp</artifactId>
@@ -38,10 +38,5 @@
   		<artifactId>nd4j-native-platform</artifactId>
   		<version>0.9.1</version>
   	</dependency>
-  	    <dependency>
-        <groupId>org.codehaus.jackson</groupId>
-        <artifactId>jackson-mapper-asl</artifactId>
-        <version>1.9.13</version>
-    </dependency>
   </dependencies>
 </project>
