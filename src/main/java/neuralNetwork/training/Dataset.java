@@ -1,6 +1,7 @@
 package main.java.neuralNetwork.training;
 
 import java.util.*;
+
 import java.io.*;
 
 public class Dataset {
@@ -79,5 +80,18 @@ public class Dataset {
 			}
 		});
 		fw.close();
+	}
+	public void print()
+	{
+		data.forEach((k, v) -> {
+			System.out.println("Input: ");
+			for(int a = 0; a < k.length; a++)
+				System.out.print(k[a] + " ");
+			System.out.println();
+			System.out.println("Expected output: ");
+			for(int a = 0; a < v.length; a++)
+				System.out.print(v[a] + " ");
+			System.out.println();
+		});
 	}
 }
