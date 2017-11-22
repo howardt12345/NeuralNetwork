@@ -34,6 +34,9 @@ public class Matrix {
 	        }
 	    }
 	}
+	/** New Matrix from an array.
+	 * @param vector the array.
+	 */
 	public Matrix (float[] vector)
 	{
 		this.rows = vector.length;
@@ -129,18 +132,14 @@ public class Matrix {
 	        }
 	    }
 	}
+	/** New Matrix from length.
+	 * @param length the length.
+	 */
 	public Matrix (int length)
 	{
 		this.rows = length;
 		this.columns = 1;
 		this.matrix = new float[length];
-	}
-	public Matrix (int rows, int columns, float[] matrix)
-	{
-		assert(rows*columns == matrix.length) : rows + " * " + columns + " != " + matrix.length;
-		this.rows = rows;
-		this.columns = columns;
-		this.matrix = matrix;
 	}
 	/** Identity Matrix. */
 	public static Matrix identity () 
@@ -153,6 +152,9 @@ public class Matrix {
 		}
 		return m;
 	}
+	/** Matrix with specified diagonal values.
+	 * @param values the values.
+	 */
 	public static Matrix diagonal(float[] values)
 	{
 		Matrix m = new Matrix(values.length, values.length);
@@ -164,6 +166,11 @@ public class Matrix {
 		}
 		return m;
 	}
+	/** Matrix with set value as every element.
+	 * @param value the value to set all elements.
+	 * @param rows the number of rows.
+	 * @param columns the number of columns.
+	 */
 	public static Matrix ofValue(float value, int rows, int columns)
 	{
 		Matrix m = new Matrix (rows, columns);
@@ -230,25 +237,40 @@ public class Matrix {
 				set(0, a, b);
 		}
 	}
+	/** Randomize all elements in Matrix.
+	 */
 	public void randomize()
 	{
 		IntStream.range(0, matrix.length).forEach(a -> matrix[a] = (float) Math.random()-0.5f);
 	}
+	/** Randomize all elements in Matrix.
+	 * @param seed the seed.
+	 */
 	public void randomize(long seed)
 	{
 		Random r = new Random(seed);
 		IntStream.range(0, matrix.length).forEach(a -> matrix[a] = (float) r.nextFloat()-0.5f);
 	}
+	/** The sum of all elements in the Matrix.
+	 * @return the sum of all elements.
+	 */
 	public float sum()
 	{
 		return Utils.sum(matrix);
 	}
+	/** The Matrix, where e is raised to every element.
+	 * @param m1 the Matrix.
+	 */
 	public static Matrix exps(Matrix m1)
 	{
 		Matrix m = new Matrix(m1.rows, m1.columns);
 		m.matrix = Utils.exps(m1.matrix);
 		return m;
 	}
+	/** Adds two matrices.
+	 * @param m1 the first Matrix
+	 * @param m2 the second Matrix
+	 */
 	public static Matrix add(Matrix m1, Matrix m2)
 	{
 		assert(m1.rows == m2.rows && m1.columns == m2.columns)
@@ -260,6 +282,10 @@ public class Matrix {
 		}
 		return m;
 	}
+	/** Subtracts two matrices.
+	 * @param m1 the first Matrix
+	 * @param m2 the second Matrix
+	 */
 	public static Matrix subtract(Matrix m1, Matrix m2)
 	{
 		assert(m1.rows == m2.rows && m1.columns == m2.columns)
@@ -271,6 +297,10 @@ public class Matrix {
 		}
 		return m;
 	}
+	/** Subtracts Matrix by a constant.
+	 * @param m1 the Matrix.
+	 * @param x the constant.
+	 */
 	public static Matrix subtract(Matrix m1, float x)
 	{
 		Matrix m = new Matrix(m1.rows, m1.columns);
@@ -280,6 +310,10 @@ public class Matrix {
 		}
 		return m;
 	}
+	/** Scalar Multipication.
+	 * @param m1 the Matrix.
+	 * @param scalar the scalar.
+	 */
 	public static Matrix multiply(Matrix m1, float scalar)
 	{
 		Matrix m = new Matrix(m1.rows, m1.columns);
@@ -385,6 +419,10 @@ public class Matrix {
 		}
 		return m;
 	}
+	/** The Haramard Product of two matrices.
+	 * @param m1 the first Matrix.
+	 * @param m2 the second Matrix.
+	 */
 	public static Matrix haramardProduct(Matrix m1, Matrix m2)
 	{
 		assert(m1.rows == m2.rows && m1.columns == m2.columns)
@@ -396,6 +434,10 @@ public class Matrix {
 		}
 		return m;
 	}
+	/** The Kronecker Product of two matrices.
+	 * @param m1 the first matrix.
+	 * @param m2 the second matrix.
+	 */
 	public static Matrix kroneckerProduct(Matrix m1, Matrix m2)
 	{
 		Matrix m = new Matrix(m1.rows*m2.rows, m1.columns*m2.columns);
@@ -418,6 +460,10 @@ public class Matrix {
 			}
 		}
 	}
+	/** Horizontally concatenates two matrices.
+	 * @param m1 the first Matrix.
+	 * @param m2 the second Matrix.
+	 */
 	public static Matrix horizontalConcat(Matrix m1, Matrix m2)
 	{
 		assert(m1.rows == m2.rows) : m1.rows + " != " + m2.rows;
@@ -431,6 +477,10 @@ public class Matrix {
 		}
 		return m;
 	}
+	/** Matrix transposition.
+	 * @param m the Matrix to transpose.
+	 * @return the transposed Matrix.
+	 */
 	public static Matrix transpose(Matrix m)
 	{
 		Matrix t = new Matrix(m.columns, m.rows);
@@ -440,6 +490,9 @@ public class Matrix {
 		}
 		return t;
 	}
+	/** Transpose this Matrix.
+	 * @return the transposed Matrix.
+	 */
 	public Matrix transpose()
 	{
 		Matrix t = new Matrix(columns, rows);
@@ -449,6 +502,10 @@ public class Matrix {
 		}
 		return t;
 	}
+	/** The determinant of the Matrix.
+	 * @param m the Matrix.
+	 * @return the determinant of the Matrix.
+	 */
 	public static float determinant(Matrix m)
 	{
 		float result = 0;
@@ -510,21 +567,25 @@ public class Matrix {
 		}
 		return true;
 	}
-	/** Gets the Matrix value at the provided index.
+	/** Gets the Matrix element at the provided index.
 	 * @param row the row index.
 	 * @param column the column index.
-	 * @return the Matrix value.
+	 * @return the Matrix element.
 	 */
 	public float get (int row, int column) 
 	{
 		return matrix[row*columns + column];
 	}
+	/** Gets the Matrix element.
+	 * @param index the index.
+	 * @return the Matrix element.
+	 */
 	public float get(int index)
 	{
 		return matrix[index];
 	}
-	/** Sets the Matrix at the provided index.
-	 * @param value the value to set.
+	/** Sets the Matrix element at the index.
+	 * @param value the value.
 	 * @param row the row index.
 	 * @param column the column index.
 	 */
@@ -532,6 +593,10 @@ public class Matrix {
 	{
 		matrix[row*columns + column] = value;
 	}
+	/** Sets the Matrix element at the index.
+	 * @param value the value.
+	 * @param index the index.
+	 */
 	public void set(float value, int index)
 	{
 		matrix[index] = value;
@@ -546,10 +611,12 @@ public class Matrix {
 	{
 		return columns;
 	}
+	/** Returns the length of the Matrix.*/
 	public int length()
 	{
 		return matrix.length;
 	}
+	/** Returns the Matrix as an array.*/
 	public float[] matrix()
 	{
 		return matrix;
