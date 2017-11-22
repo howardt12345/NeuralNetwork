@@ -1,6 +1,5 @@
 package main.java.examples.xor;
 
-import main.java.neuralNetwork.*;
 import main.java.neuralNetwork.functions.*;
 import main.java.neuralNetwork.networks.supervised.FeedforwardNetwork;
 import main.java.neuralNetwork.training.Dataset;

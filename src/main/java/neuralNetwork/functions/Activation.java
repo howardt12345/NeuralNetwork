@@ -83,7 +83,7 @@ public abstract class Activation {
 			}
 			@Override
 			public Matrix der(Matrix x) {
-				return binaryStep().der(x);
+				return binaryStep().f(x);
 			}
 		};
 	}

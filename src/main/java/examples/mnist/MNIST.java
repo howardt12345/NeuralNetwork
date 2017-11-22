@@ -21,10 +21,10 @@ public class MNIST {
 		System.out.println("Done reading data");
 		FeedforwardNetwork network = new FeedforwardNetwork(
 				new int[] {784, 30, 10},
-				Activation.reLU(),
+				Activation.sigmoid(),
 				Initialization.randomNormal()
 				);
-		network.train(30, 
+		network.train(100, 
 				new Dataset(configureIn(trainImages, 784), configureOut(trainLabels, 10)), 
 				new Dataset(configureIn(testImages, 784), configureOut(testLabels, 10)),
 				1, 

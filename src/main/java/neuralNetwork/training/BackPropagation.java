@@ -30,6 +30,7 @@ public class BackPropagation extends Training {
 		int epoch = 1;
 		do 
 		{
+			System.out.println(epoch);
 			iterate(epoch);
 			if(Float.compare(trainingLoss[epoch-1], 0.0f) <= 0) 
 				break;
@@ -66,7 +67,7 @@ public class BackPropagation extends Training {
 									delta
 									), 
 							network.get(n-l+1).outputs());
-					network.get(n-l+1).setDeltaBias(Matrix.add(network.get(n-l+1).nebla_b(), delta));;
+					network.get(n-l+1).setDeltaBias(Matrix.add(network.get(n-l+1).nebla_b(), delta));
 					network.getWeights()[n-l].setDeltaWeights(Matrix.add(
 							network.getWeights()[n-l].getDeltaWeights(), 
 							Matrix.multiply(
