@@ -22,7 +22,7 @@ public class Test {
 				Initialization.randomUniform()
 				);
 		long start = System.nanoTime(), end;
-		network.train(10000, new Dataset(in, target), null, 0.01f, Cost.crossEntropy());
+		network.train(10000, new Dataset(in, target), null, 3f, Cost.mst());
 		end = System.nanoTime();
 		System.out.println(end-start);
 		for(int a = 0; a < in.length; a++)
