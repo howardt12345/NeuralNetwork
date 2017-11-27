@@ -72,7 +72,7 @@ public class FeedforwardNetwork extends NeuralNetwork {
 	public void evaluate(Dataset testData)
 	{
 		List<Float> error = new ArrayList<Float>(), loss = new ArrayList<Float>();
-		testData.getData().parallelStream().forEach(x -> {
+		testData.getData().stream().forEach(x -> {
 			Matrix out = this.feedForward(new Matrix(x));
 			Matrix delta = Matrix.subtract(out, new Matrix(testData.get(x)));
 			error.add(delta.sum());

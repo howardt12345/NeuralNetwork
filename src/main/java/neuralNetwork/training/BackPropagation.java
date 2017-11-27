@@ -32,7 +32,7 @@ public class BackPropagation extends Training {
 		{
 			System.out.println(epoch);
 			iterate(epoch);
-			if(Float.compare(trainingLoss[epoch-1], 0.0f) <= 0) 
+			if(Float.compare(trainingLoss[epoch-1], Float.MIN_NORMAL) <= 0) 
 				break;
 		} while(epoch++ < epochs);
 		network.setTrainingLoss(trainingLoss);
@@ -43,7 +43,7 @@ public class BackPropagation extends Training {
 	{
 		List<Float> loss = new ArrayList<Float>();
 		int n = network.getWeights().length, size = trainingData.size();
-		trainingData.getData().parallelStream().forEach(x -> {
+		trainingData.getData().stream().forEach(x -> {
 			synchronized(loss)
 			{
 				Matrix out = network.feedForward(new Matrix(x));
