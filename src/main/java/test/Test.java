@@ -7,13 +7,14 @@ import main.java.neuralNetwork.functions.*;
 import main.java.neuralNetwork.layer.ConnectedLayer;
 import main.java.neuralNetwork.networks.supervised.FeedforwardNetwork;
 import main.java.neuralNetwork.training.Dataset;
-import main.java.neuralNetwork.utils.Utils;
+import main.java.neuralNetwork.utils.*;
 
 import java.io.*;
 
 public class Test {
 	public static void main (String[] args) throws IOException
 	{
+		System.gc();
 		float[][] in = new float[][]{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
 				target = new float[][] {{0}, {1}, {1}, {0}};
 		FeedforwardNetwork network = new FeedforwardNetwork(
