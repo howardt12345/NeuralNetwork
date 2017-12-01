@@ -1,17 +1,22 @@
 #pragma once
 #include "stdafx.h"
+#include "Activation.h"
+
 #include <iostream>
+#include <Eigen/Dense>
+
+using namespace Eigen;
 
 namespace neuralNetwork
 {
 	namespace functions 
 	{
-		class Activation
+		namespace activation
 		{
-		};
+		}
 	}
 	namespace layer 
-	{
+	{  
 	}
 	namespace networks
 	{
