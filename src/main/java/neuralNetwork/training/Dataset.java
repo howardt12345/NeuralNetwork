@@ -64,7 +64,6 @@ public class Dataset {
 	public void toFile(String filename) throws IOException
 	{
 		FileWriter fw = new FileWriter(new File(filename));
-		String s = "";
 		data.forEach((x, y) -> {
 			try {
 				for(int a = 0; a < x.length; a++)
