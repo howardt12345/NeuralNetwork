@@ -6,6 +6,7 @@
 #include "functions.cost.h"
 #include "functions.gradientDescent.h"
 #include "functions.initialization.h"
+#include "training.training.h"
 #include "layer.h"
 
 namespace neuralNetwork

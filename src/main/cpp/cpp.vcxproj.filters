@@ -13,6 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\functions">
+      <UniqueIdentifier>{f0a4cd42-e157-44ab-b48c-db4ec5f524a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\data">
+      <UniqueIdentifier>{a9f7f341-9a85-42d8-a264-6fa9eb28be20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\layer">
+      <UniqueIdentifier>{12e50f8c-6da6-48bc-8ff8-ecc0aab8c521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networks">
+      <UniqueIdentifier>{62981240-1023-40ba-b81e-6225c7c0970f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\training">
+      <UniqueIdentifier>{a52b8cf8-308e-4dc4-b2ea-6b2e411c5631}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -24,29 +39,32 @@
     <ClInclude Include="neuralNetwork.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="functions.activation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="layer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="functions.initialization.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\functions</Filter>
     </ClInclude>
-    <ClInclude Include="networks.supervised.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="functions.activation.h">
+      <Filter>Header Files\functions</Filter>
     </ClInclude>
     <ClInclude Include="functions.cost.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="data.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\functions</Filter>
     </ClInclude>
     <ClInclude Include="functions.gradientDescent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\functions</Filter>
+    </ClInclude>
+    <ClInclude Include="data.h">
+      <Filter>Header Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="layer.h">
+      <Filter>Header Files\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="networks.supervised.h">
+      <Filter>Header Files\networks</Filter>
+    </ClInclude>
+    <ClInclude Include="training.training.h">
+      <Filter>Header Files\training</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
