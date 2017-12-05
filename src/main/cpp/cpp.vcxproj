@@ -148,7 +148,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Activation.h" />
+    <ClInclude Include="data.h" />
+    <ClInclude Include="functions.cost.h" />
+    <ClInclude Include="functions.gradientDescent.h" />
+    <ClInclude Include="functions.initialization.h" />
+    <ClInclude Include="layer.h" />
+    <ClInclude Include="lib.h" />
+    <ClInclude Include="functions.activation.h" />
+    <ClInclude Include="networks.supervised.h" />
     <ClInclude Include="neuralNetwork.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
