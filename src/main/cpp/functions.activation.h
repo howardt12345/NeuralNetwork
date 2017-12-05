@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "neuralNetwork.h"
 #include <Eigen/Dense>
 
 using namespace Eigen;
@@ -13,8 +12,8 @@ namespace neuralNetwork
 			class Activation
 			{
 			public:
-				virtual MatrixXf f(MatrixXf x);
-				virtual MatrixXf der(MatrixXf x);
+				virtual MatrixXf f(MatrixXf x) = 0;
+				virtual MatrixXf der(MatrixXf x) = 0;
 			};
 			class Identity : public Activation
 			{

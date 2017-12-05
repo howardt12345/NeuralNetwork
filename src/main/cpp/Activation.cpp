@@ -1,18 +1,9 @@
 ﻿#include "stdafx.h"
 #include "neuralNetwork.h"
-#include "Activation.h"
+#include "functions.activation.h"
 
 using namespace neuralNetwork::functions::activation;
 using namespace std;
-
-MatrixXf Activation::f(MatrixXf x)
-{
-	return x;
-}
-MatrixXf Activation::der(MatrixXf x)
-{
-	return x;
-}
 
 MatrixXf Identity::f(MatrixXf x)
 {
