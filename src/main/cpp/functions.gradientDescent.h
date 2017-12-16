@@ -9,7 +9,10 @@ namespace neuralNetwork
 	{
 		namespace gradientDescent
 		{
+			class GradientDescent
+			{
 
+			};
 		}
 	}
 }

@@ -1,3 +1,5 @@
+#ifndef LIB_H
+#define LIB_H
 #pragma once
 #include "stdafx.h"
 #include "neuralNetwork.h"
@@ -19,6 +21,7 @@ namespace neuralNetwork
 		using namespace functions::gradientDescent;
 		using namespace functions::initialization;
 		using namespace layer;
+		using namespace networks;
 		using namespace networks::supervised;
 		using namespace training;
 		using neuralNetwork::Utils;
@@ -36,3 +39,4 @@ namespace neuralNetwork
 		using neuralNetwork::Utils;
 	}
 }
+#endif // !LIB_H

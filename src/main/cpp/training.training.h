@@ -23,5 +23,9 @@ namespace neuralNetwork
 			}
 			virtual void train(int epochs) = 0;
 		};
+		class BackPropagation : public Training
+		{
+
+		};
 	}
 }

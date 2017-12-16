@@ -1,15 +1,30 @@
+#pragma once
 #include "stdafx.h"
 #include "layer.h"
 #include "functions.cost.h"
 #include "data.h"
+#include "neuralNetwork.h"
 #include <vector>
 #include <Eigen/Dense>
 
 using namespace Eigen;
 using namespace std;
+using namespace neuralNetwork::functions;
+
 
 namespace neuralNetwork
 {
+	namespace functions
+	{
+		namespace activation
+		{
+			class Activation;
+		}
+		namespace initialization
+		{
+			class Initialization;
+		}
+	}
 	namespace networks
 	{
 		namespace supervised
@@ -53,6 +68,23 @@ namespace neuralNetwork
 				float getLoss() {
 					return loss;
 				}
+			};
+			class FeedforwardNeuralNetwork : public NeuralNetwork
+			{
+			private:
+				void initialize(initialization::Initialization * i);
+			public:
+				FeedforwardNeuralNetwork(int * layers, int size, activation::Activation &a, initialization::Initialization * i);
+				FeedforwardNeuralNetwork(vector<layer::Layer> layers, initialization::Initialization * i);
+				MatrixXf feedForward(MatrixXf in);
+				MatrixXf calculateOutputs();
+				void train(neuralNetwork::data::Data trainingData,
+					data::Data testData,
+					float eta,
+					functions::cost::Cost cost);
+				void evaluate(data::Data testData);
+				layer::Layer & get(int index) { return layers.at(index); }
+				void print();
 			};
 		}
 	}

@@ -163,7 +163,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Activation.cpp" />
+    <ClCompile Include="ConnectedLayer.cpp" />
+    <ClCompile Include="Connection.cpp" />
     <ClCompile Include="cpp.cpp" />
+    <ClCompile Include="FeedforwardNeuralNetwork.cpp" />
+    <ClCompile Include="Initialization.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
