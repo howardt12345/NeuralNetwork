@@ -30,12 +30,7 @@ namespace neuralNetwork
 				Constant(float x) { this->x = x; };
 				void initialize(layer::Connection * c);
 			};
-			class RandomNormal : public Initialization
-			{
-			public:
-				void initialize(layer::Connection * c);
-			};
-			class RandomUniform : public Initialization
+			class Random : public Initialization
 			{
 			public:
 				void initialize(layer::Connection * c);

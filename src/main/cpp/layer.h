@@ -29,7 +29,7 @@ namespace neuralNetwork
 		public:
 			Layer(MatrixXf layer,
 				MatrixXf outputs,
-				MatrixXf bias) : Layer(layer, outputs, bias, activation::Identity()){};
+				MatrixXf bias) : Layer(layer, outputs, bias, activation::Identity()) {};
 			Layer(MatrixXf layer,
 				MatrixXf outputs,
 				MatrixXf bias,

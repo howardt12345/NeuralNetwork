@@ -7,9 +7,19 @@ using namespace Eigen;
 
 using namespace neuralNetwork::functions::initialization;
 
-
-
-void RandomUniform::initialize(layer::Connection * c)
+void Zeros::initialize(layer::Connection * c)
+{
+	c->getWeights().setZero();
+}
+void Ones::initialize(layer::Connection * c)
+{
+	c->getWeights().setOnes();
+}
+void Constant::initialize(layer::Connection * c)
+{
+	c->getWeights().setConstant(x);
+}
+void Random::initialize(layer::Connection * c)
 {
 	c->getWeights().setRandom();
 }

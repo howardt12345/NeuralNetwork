@@ -35,6 +35,10 @@ namespace neuralNetwork
 		namespace initialization
 		{
 			class Initialization;
+			class Zeros;
+			class Ones;
+			class Constant;
+			class Random;
 		}
 		namespace gradientDescent
 		{
@@ -42,7 +46,7 @@ namespace neuralNetwork
 		}
 	}
 	namespace layer 
-	{  
+	{
 		class Layer;
 		class Connection;
 		class ConnectedLayer;
