@@ -165,6 +165,7 @@
     <ClCompile Include="Activation.cpp" />
     <ClCompile Include="ConnectedLayer.cpp" />
     <ClCompile Include="Connection.cpp" />
+    <ClCompile Include="Cost.cpp" />
     <ClCompile Include="cpp.cpp" />
     <ClCompile Include="FeedforwardNeuralNetwork.cpp" />
     <ClCompile Include="Initialization.cpp" />

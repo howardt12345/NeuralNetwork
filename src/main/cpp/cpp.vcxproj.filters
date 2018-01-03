@@ -89,5 +89,8 @@
     <ClCompile Include="Initialization.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Cost.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
