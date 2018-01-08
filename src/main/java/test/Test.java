@@ -39,7 +39,7 @@ public class Test {
 				for(int a = 0; a < output.length; a++)
 					this.output[a] = sigmoid.f(new float[] {sum.f(inputs)});
 			}
-		}, 
+		},
 		n2 = new Neuron() {
 			@Override
 			public void calculate(float... inputs) 
