@@ -1,4 +1,2 @@
 # NeuralNetwork
-A Neural Network from scratch.
-# Getting Started
-Currently in the process of porting the Java code to C++.
+A Neural Network, written with java from scratch. This project no longer receives updates.
